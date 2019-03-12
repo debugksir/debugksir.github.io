@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="Web,Python,Spider,Photography,Designer,Story,other">
+  
+  
+    <meta name="description" content="以此记录知识与生活">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    wamp的安装和环境配置 |
+    
+    人生如逆旅，我亦是行人</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-wamp的安装和环境配置" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      wamp的安装和环境配置
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2016/03/13/wamp的安装和环境配置/" class="article-date">
+  <time datetime="2016-03-13T12:01:35.000Z" itemprop="datePublished">2016-03-13</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/环境配置/">环境配置</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="wamp的安装和环境配置"><a href="#wamp的安装和环境配置" class="headerlink" title="wamp的安装和环境配置"></a>wamp的安装和环境配置</h2><h3 id="wamp的简单介绍"><a href="#wamp的简单介绍" class="headerlink" title="wamp的简单介绍"></a>wamp的简单介绍</h3><blockquote>
+<p>Windows+Apache+Mysqul++PHP的首字母组合,集成安装环境,windows下的apache,php和mysql的服务器软件</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="wamp的安装"><a href="#wamp的安装" class="headerlink" title="wamp的安装"></a>wamp的安装</h3><ul>
+<li>注意必需安装在没有中文文件名的目录下</li>
+<li>安装好后我们可以在浏览器中输入127.0.0.1查看是否安装成功</li>
+<li>为了能让更多域名来访问我们的服务器,我们需要对wamp安装目录下的bin下的apache下的Apache版本下的canf下的httpd.conf进行响应配置,这里我以自己的安装目录为例 <code>C:\wamp\bin\apache\Apache2.2.21\conf\httpd.conf</code></li>
+<li>在第235 行添加 Allow from all ,打开服务器的访问权限</li>
+<li>如何修改成我们指定的根目录呢? </li>
+</ul>
+<blockquote>
+<p>在httpd.conf文件的第178和205行把我们指定的根目录文件拷贝过来</p>
+</blockquote>
+<ul>
+<li>如何实现对多个网站的管理呢?</li>
+</ul>
+<blockquote>
+<p>在httpd.conf第467行找到virtual hosts下面的include, 把include前面的#号去掉,即打开注释,<br>然后在C:\wamp\bin\apache\Apache2.2.21\conf\extra\httpd-vhosts.conf 中对<br>DocumentRoot “E:/www/example”<br>ServerName “example.com”<br>ServerAlias “<a href="http://www.example.com&quot;" target="_blank" rel="noopener">www.example.com&quot;</a><br>三项修改即可,注意修改之后须重启服务器才能生效</p>
+</blockquote>
+<ul>
+<li>如何对DNS(ip域名映射关系)进行设置呢?</li>
+</ul>
+<blockquote>
+<p>在C:\Windows\System32\drivers\etc\hosts下,将hosts文件拷贝出来,把127.0.0.1指定成你想要的域名地址,然后将原来的hosts文件覆盖即可</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/13/wamp的安装和环境配置/" data-id="cjt55p64h001tsww3u07jlj1j" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Back-end/">Back-end</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2016/11/06/MongoDB-shell命令/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            MongoDB-shell命令
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2016/03/13/函数的四种调用模式/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">函数的四种调用模式</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+  
+    
+  <div class="comment" id="comments"></div>
+  <script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: '8m7KpaQUQaSlUvwPK8sIqf5Y-gzGzoHsz',
+      appKey: 'KOp47h4dG5uGounP1YLfL6kf',
+      placeholder: '来呀，造作啊！',
+      avatar:'mm',
+      guest_info: GUEST,
+      pageSize:'10' || 10,
+    })
+  </script>
+
+  
+  
+  
+  <div class="reward-box">
+    <div class="reward-btn">赞 赏</div>
+    <img class="reward-img" src="/images/reward.png">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <div class="reward-tip">微信扫一扫</div>
+    <script type="text/javascript">
+        var flag = false;
+        $('.reward-btn').click(function() {
+            flag = !flag;
+            flag ? ($('.reward-img').fadeIn() & $('.reward-tip').fadeIn() & $(this).html('谢 谢')) : ($('.reward-img').fadeOut() & $('.reward-tip').fadeOut() & $(this).html('赞 赏'));
+        })
+    </script>
+</div>
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 人生如逆旅，我亦是行人</li>
+      <li>Write by <a href="https://github.com/debugksir" target="_blank">白夜飞鱼</a>
+      </li><li><i class="fe fe-bar-chart"></i> <span id="busuanzi_value_site_pv"></span></li>
+      <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="人生如逆旅，我亦是行人"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/tags">分类</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

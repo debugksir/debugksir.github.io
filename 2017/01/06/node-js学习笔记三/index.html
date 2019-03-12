@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="Web,Python,Spider,Photography,Designer,Story,other">
+  
+  
+    <meta name="description" content="以此记录知识与生活">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    node.js学习笔记三 |
+    
+    人生如逆旅，我亦是行人</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-node-js学习笔记三" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      node.js学习笔记三
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2017/01/06/node-js学习笔记三/" class="article-date">
+  <time datetime="2017-01-06T04:29:20.000Z" itemprop="datePublished">2017-01-06</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NodeJS/">NodeJS</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h1 text-align="center">node.js 学习笔记三</h1>
+
+<h4 id="node-js的事件循环机制"><a href="#node-js的事件循环机制" class="headerlink" title="node.js的事件循环机制"></a>node.js的事件循环机制</h4><blockquote>
+<p>Node.js 在什么时候会进入事件循环呢？答案是 Node.js 程序由事件循环开始，到事件循环结束，所有的逻辑都是事件的回调函数，所以 Node.js 始终在事件循环中，程序入口就是事件循环第一个事件的回调函数。事件的回调函数在执行的过程中，可能会发出 I/O 请求或直接发射（emit）事件，执行完毕后再返回事件循环，事件循环会检查事件队列中有没有未处理的事件，直到程序结束</p>
+</blockquote>
+<blockquote>
+<p>事件循环 –&gt; 回调函数 –&gt; 磁盘I/O/网络通信/数据库查询 –&gt; 时间循环队列 –&gt; 事件循环 –&gt; 回调函数 </p>
+</blockquote>
+<a id="more"></a>
+<h4 id="模板和包"><a href="#模板和包" class="headerlink" title="模板和包"></a>模板和包</h4><ul>
+<li><p>模块（Module）和包（Package）是 Node.js 最重要的支柱。开发一个具有一定规模的程序不可能只用一个文件，通常需要把各个功能拆分、封装，然后组合起来，模块正是为了实现这种方式而诞生的。模板都是基于文件的,机制很简单.可以把包理解为实现了某个功能的模块的集合</p>
+</li>
+<li><p>什么是模块</p>
+</li>
+</ul>
+<blockquote>
+<p>模块是 Node.js 应用程序的基本组成部分，文件和模块是一一对应的。换言之，一个<br>Node.js 文件就是一个模块，这个文件可能是 JavaScript 代码、JSON 或者编译过的 C/C++ 扩展。</p>
+</blockquote>
+<ul>
+<li>创建模块</li>
+</ul>
+<blockquote>
+<p>在 Node.js 中，创建一个模块非常简单，因为一个文件就是一个模块，我们要关注的问<br>题仅仅在于如何在其他文件中获取这个模块。Node.js 提供了 exports 和 require 两个对象，其中 exports 是模块公开的接口，require 用于从外部获取一个模块的接口，即所获取模块的 exports 对象。</p>
+</blockquote>
+<pre>
+新建一个module.js文件
+    var name;
+
+    exports.setName = function(thyname) {
+        name = thyname;
+    };
+    exports.sayHello = function(){
+        console.log('hello! ' + name + ' how are you ! ');
+    };
+新建一个getModule.js文件
+    var ksir = require('./module');
+    ksir.setName('ksir');
+    ksir.sayHello();
+</pre>
+
+<blockquote>
+<p>不管getModule.js调用module模块多少次,只会加载一次</p>
+</blockquote>
+<h4 id="创建包"><a href="#创建包" class="headerlink" title="创建包"></a>创建包</h4><blockquote>
+<p>包是在模块基础上更深一步的抽象，Node.js 的包类似于 C/C++ 的函数库或者 Java/.Net<br>的类库。它将某个独立的功能封装起来，用于发布、更新、依赖管理和版本控制。Node.js 根<br>据 CommonJS 规范实现了包机制，开发了 npm来解决包的发布和获取需求。<br>Node.js 的包是一个目录，其中包含一个 JSON 格式的包说明文件 package.json。严格符<br>合 CommonJS 规范的包应该具备以下特征:</p>
+</blockquote>
+<ul>
+<li>package.json 必须在包的顶层目录下；</li>
+<li>二进制文件应该在 bin 目录下；</li>
+<li>JavaScript 代码应该在 lib 目录下；</li>
+<li>文档应该在 doc 目录下；</li>
+<li>单元测试应该在 test 目录下。</li>
+</ul>
+<blockquote>
+<p>在写包的时候,尽量按照 CommonJS 的规范</p>
+</blockquote>
+<blockquote>
+<p>一个模块除了是一个js文件外,还可以是一个文件夹</p>
+</blockquote>
+<pre>
+
+    //somepackage/index.js
+    exports.hello = function() {
+    console.log('Hello.');
+    };
+    然后在 somepackage 之外建立 getpackage.js，内容如下：
+    //getpackage.js
+    var somePackage = require('./somepackage');
+    somePackage.hello();
+</pre>
+
+<blockquote>
+<p>此外,还可以将目标文件放在lib文件内,将该地址放在package.json文件中的main键值中</p>
+</blockquote>
+<pre>
+    {
+    "main" : "./lib/interface.js"
+    }
+</pre>
+
+<p>3 创建全局链接</p>
+<blockquote>
+<p>我们用npm安装的全局包是不能够被我们require到的,只有本地安装的包才可以,当我们的系统原来安装了全局包,可以通过<code>npm link [packageName]</code> 来移植到node_modules中.不过改名了在window系统是不受支持</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/06/node-js学习笔记三/" data-id="cjt55p6470019sww30c5it5v9" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Back-end/">Back-end</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/03/09/ubantu使用与建议/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            ubantu使用与建议
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2017/01/04/node-js学习笔记二/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">node.js学习笔记二</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+  
+    
+  <div class="comment" id="comments"></div>
+  <script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: '8m7KpaQUQaSlUvwPK8sIqf5Y-gzGzoHsz',
+      appKey: 'KOp47h4dG5uGounP1YLfL6kf',
+      placeholder: '来呀，造作啊！',
+      avatar:'mm',
+      guest_info: GUEST,
+      pageSize:'10' || 10,
+    })
+  </script>
+
+  
+  
+  
+  <div class="reward-box">
+    <div class="reward-btn">赞 赏</div>
+    <img class="reward-img" src="/images/reward.png">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <div class="reward-tip">微信扫一扫</div>
+    <script type="text/javascript">
+        var flag = false;
+        $('.reward-btn').click(function() {
+            flag = !flag;
+            flag ? ($('.reward-img').fadeIn() & $('.reward-tip').fadeIn() & $(this).html('谢 谢')) : ($('.reward-img').fadeOut() & $('.reward-tip').fadeOut() & $(this).html('赞 赏'));
+        })
+    </script>
+</div>
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 人生如逆旅，我亦是行人</li>
+      <li>Write by <a href="https://github.com/debugksir" target="_blank">白夜飞鱼</a>
+      </li><li><i class="fe fe-bar-chart"></i> <span id="busuanzi_value_site_pv"></span></li>
+      <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="人生如逆旅，我亦是行人"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/tags">分类</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

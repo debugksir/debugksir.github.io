@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="Web,Python,Spider,Photography,Designer,Story,other">
+  
+  
+    <meta name="description" content="以此记录知识与生活">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    css 常见问题总结 |
+    
+    人生如逆旅，我亦是行人</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-css-常见问题总结" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      css 常见问题总结
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2016/01/08/css-常见问题总结/" class="article-date">
+  <time datetime="2016-01-08T12:03:39.000Z" itemprop="datePublished">2016-01-08</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="css-常见问题总结"><a href="#css-常见问题总结" class="headerlink" title="css 常见问题总结"></a>css 常见问题总结</h2><h4 id="哪些css属性可以继承"><a href="#哪些css属性可以继承" class="headerlink" title="哪些css属性可以继承?"></a>哪些css属性可以继承?</h4><ul>
+<li><p>可继承:</p>
+<ol>
+<li>font-size</li>
+<li>font-family</li>
+<li>color </li>
+<li>ul</li>
+<li>li</li>
+<li>dl</li>
+<li>dd </li>
+<li>dt </li>
+</ol>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><p>不可继承:</p>
+<ol>
+<li>border</li>
+<li>padding</li>
+<li>margin</li>
+<li>width</li>
+<li>height</li>
+</ol>
+</li>
+</ul>
+<h4 id="css-有哪些选择器-优先级如何计算"><a href="#css-有哪些选择器-优先级如何计算" class="headerlink" title="css 有哪些选择器,优先级如何计算"></a>css 有哪些选择器,优先级如何计算</h4><ul>
+<li>id 选择器  (# myid)</li>
+<li>类选择器 (.myclass)</li>
+<li>标签选择器 (div)</li>
+<li>相邻选择器 (h1+p)</li>
+<li>子代选择器 (div&gt;p)</li>
+<li>后代选择器 (div p)</li>
+<li>通配符选择器 (*)</li>
+<li>属性选择器 (div[class=”myclass”])</li>
+<li>伪类选择器 (a:hover, li:nth-child)</li>
+</ul>
+<p>css3 新增选择器</p>
+<ul>
+<li>p:first-of-type</li>
+<li>p:last-of-type</li>
+<li>p:only-of-type</li>
+<li>p:only-child</li>
+<li>nth-child(2)</li>
+<li>:enabled</li>
+<li>:disabled</li>
+<li>:checked</li>
+</ul>
+<blockquote>
+<p>优先级: !important &gt; 内联 &gt; id &gt; class &gt; tag</p>
+</blockquote>
+<blockquote>
+<p>优先级就近原则,样式定义最近者为准 内联 &gt; 嵌入 &gt; link引入</p>
+</blockquote>
+<blockquote>
+<p>以最后载入的样式为准</p>
+</blockquote>
+<h4 id="行内元素块元素分别有哪些"><a href="#行内元素块元素分别有哪些" class="headerlink" title="行内元素块元素分别有哪些"></a>行内元素块元素分别有哪些</h4><ul>
+<li><p>行内元素</p>
+<ol>
+<li>a - 锚点</li>
+<li>abbr - 缩写</li>
+<li>acronym - 首字</li>
+<li>b - 粗体(不推荐)</li>
+<li>bdo - bidi override</li>
+<li>big - 大字体</li>
+<li>br - 换行</li>
+<li>cite - 引用</li>
+<li>code - 计算机代码(在引用源码的时候需要)</li>
+<li>dfn - 定义字段</li>
+<li>em - 强调</li>
+<li>font - 字体设定(不推荐)</li>
+<li>i - 斜体</li>
+<li>img - 图片</li>
+<li>input - 输入框</li>
+<li>kbd - 定义键盘文本</li>
+<li>label - 表格标签</li>
+<li>q - 短引用</li>
+<li>s - 中划线(不推荐)</li>
+<li>samp - 定义范例计算机代码</li>
+<li>select - 项目选择</li>
+<li>small - 小字体文本</li>
+<li>span - 常用内联容器，定义文本内区块</li>
+<li>strike - 中划线</li>
+<li>strong - 粗体强调</li>
+<li>sub - 下标</li>
+<li>sup - 上标</li>
+<li>textarea - 多行文本输入框</li>
+<li>tt - 电传文本</li>
+<li>u - 下划线</li>
+<li>var - 定义变量</li>
+</ol>
+</li>
+<li><p>块元素</p>
+<ol>
+<li>address - 地址</li>
+<li>blockquote - 块引用</li>
+<li>center - 举中对齐块 </li>
+<li>dir - 目录列表 </li>
+<li>div - 常用块级容易，也是</li>
+<li>css layout的主要标签 </li>
+<li>dl - 定义列表 </li>
+<li>fieldset - form控制组 </li>
+<li>form - 交互表单 </li>
+<li>h1 - 大标题 </li>
+<li>h2 - 副标题 </li>
+<li>h3 - 3级标题 </li>
+<li>h4 - 4级标题 </li>
+<li>h5 - 5级标题 </li>
+<li>h6 - 6级标题 </li>
+<li>hr - 水平分隔线 </li>
+<li>isindex - input prompt </li>
+<li>menu - 菜单列表 </li>
+<li>noframes - frames可选内容，（对于不支持frame的浏览器显示此区块内容</li>
+<li>noscript - 可选脚本内容（对于不支持script的浏览器显示此内容） </li>
+<li>ol - 排序表单 </li>
+<li>p - 段落 </li>
+<li>pre - 格式化文本 </li>
+<li>table - 表格 </li>
+<li>ul - 非排序列表</li>
+</ol>
+</li>
+</ul>
+<h4 id="DIV-CSS两种盒子模型"><a href="#DIV-CSS两种盒子模型" class="headerlink" title="DIV CSS两种盒子模型"></a>DIV CSS两种盒子模型</h4><ul>
+<li>定义: </li>
+</ul>
+<blockquote>
+<p>网页设计中常听的属性名：内容(content)、填充(padding)、边框(border)、边界(margin)， CSS盒子模式都具备这些属性。<br>这些属性我们可以用日常生活中的常见事物——盒子作一个比喻来理解，所以叫它盒子模式。<br>CSS盒子模型就是在网页设计中经常用到的CSS技术所使用的一种思维模型。</p>
+</blockquote>
+<ul>
+<li>标准盒子模型/W3C盒子模型 - content-box</li>
+</ul>
+<blockquote>
+<p>范围包括margin,border,padding,content 并且content不包含其他部分</p>
+</blockquote>
+<ul>
+<li>IE盒子模型 - bordr-box</li>
+</ul>
+<blockquote>
+<p>范围包括margin,border,paddin,content 和W3C盒子模型不同的是它的content包含了border和padding</p>
+</blockquote>
+<pre>content-box和border-box的主要区别是二者的盒子的宽度是否包含元素的边框和内边距。</pre>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/01/08/css-常见问题总结/" data-id="cjt55p63t000jsww3qsln5v4n" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Front-end/">Front-end</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2016/01/11/CSS-hack/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            CSS hack
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2016/01/05/Javascript面向对象篇-2/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">Javascript面向对象篇 2</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+  
+    
+  <div class="comment" id="comments"></div>
+  <script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: '8m7KpaQUQaSlUvwPK8sIqf5Y-gzGzoHsz',
+      appKey: 'KOp47h4dG5uGounP1YLfL6kf',
+      placeholder: '来呀，造作啊！',
+      avatar:'mm',
+      guest_info: GUEST,
+      pageSize:'10' || 10,
+    })
+  </script>
+
+  
+  
+  
+  <div class="reward-box">
+    <div class="reward-btn">赞 赏</div>
+    <img class="reward-img" src="/images/reward.png">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <div class="reward-tip">微信扫一扫</div>
+    <script type="text/javascript">
+        var flag = false;
+        $('.reward-btn').click(function() {
+            flag = !flag;
+            flag ? ($('.reward-img').fadeIn() & $('.reward-tip').fadeIn() & $(this).html('谢 谢')) : ($('.reward-img').fadeOut() & $('.reward-tip').fadeOut() & $(this).html('赞 赏'));
+        })
+    </script>
+</div>
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 人生如逆旅，我亦是行人</li>
+      <li>Write by <a href="https://github.com/debugksir" target="_blank">白夜飞鱼</a>
+      </li><li><i class="fe fe-bar-chart"></i> <span id="busuanzi_value_site_pv"></span></li>
+      <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="人生如逆旅，我亦是行人"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/tags">分类</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

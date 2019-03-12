@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="Web,Python,Spider,Photography,Designer,Story,other">
+  
+  
+    <meta name="description" content="以此记录知识与生活">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    display属性详解 |
+    
+    人生如逆旅，我亦是行人</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-display属性详解" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      display属性详解
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2016/01/15/display属性详解/" class="article-date">
+  <time datetime="2016-01-15T14:04:01.000Z" itemprop="datePublished">2016-01-15</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="display-属性的详解"><a href="#display-属性的详解" class="headerlink" title="display 属性的详解"></a>display 属性的详解</h2><h4 id="display-block"><a href="#display-block" class="headerlink" title="display:block"></a>display:block</h4><ul>
+<li>block元素会独占一行，多个block元素会各自新起一行。默认情况下，block元素宽度自动填满其父元素宽度。</li>
+<li>block元素可以设置width,height属性。块级元素即使设置了宽度,仍然是独占一行。</li>
+<li>block元素可以设置margin和padding属性。</li>
+</ul>
+<a id="more"></a>
+<h4 id="display-inline"><a href="#display-inline" class="headerlink" title="display:inline"></a>display:inline</h4><ul>
+<li>inline元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。</li>
+<li>inline元素设置width,height属性无效。</li>
+<li>inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果。</li>
+</ul>
+<h4 id="display-inline-block"><a href="#display-inline-block" class="headerlink" title="display:inline-block"></a>display:inline-block</h4><ul>
+<li>简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。之后的内联对象会被排列在同一行内。比如我们可以给一个link（a元素）inline-block属性值，使其既具有block的宽度高度特性又具有inline的同行特性。</li>
+</ul>
+<h4 id="inline-table"><a href="#inline-table" class="headerlink" title="inline-table"></a>inline-table</h4><ul>
+<li>以表格的形式排列成行。 显示样式如下：</li>
+</ul>
+<h4 id="list-item"><a href="#list-item" class="headerlink" title="list-item"></a>list-item</h4><ul>
+<li>以列表项的形式显示，类似</li><li>标签。</li>
+</ul>
+<h4 id="run-in"><a href="#run-in" class="headerlink" title="run-in"></a>run-in</h4><ul>
+<li>若run-in框后面不是块级框时，run-in框本身将成为块级框</li>
+</ul>
+<h4 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h4><ul>
+<li>弹性盒子或者说伸缩盒子</li>
+</ul>
+<h2 id="inline-block-在什么情况下用"><a href="#inline-block-在什么情况下用" class="headerlink" title="inline-block 在什么情况下用"></a>inline-block 在什么情况下用</h2><blockquote>
+<p>元素变成行内元素且有块级元素的属性（width，height等）的时候用,比如说我们的logo放在a标签内时,想要a标签的宽和高能够包裹logo的话需要把a标签设置为inline-block</p>
+</blockquote>
+<h2 id="inline-block-和-float的区别"><a href="#inline-block-和-float的区别" class="headerlink" title="inline-block 和 float的区别"></a>inline-block 和 float的区别</h2><ul>
+<li>使用inline-block：当你需要控制元素的垂直对齐跟水平排列时，使用inline-block。</li>
+<li>使用浮动：当你需要让元素环绕某一个元素时，或者需要支持旧版本ie，或者不想处理inline-block带来的空白问题时，使用浮动。</li>
+</ul>
+<blockquote>
+<p>若父元素中的图片等高，设置浮动就会工作正常。但一旦有一列图片比较高时，图片的排列就会出现问题。这是因为浮动后，图片脱离了文档流。<br>而inline-block由于未脱离文档流，不会出现这个问题。如果你想再创建一列图片时，不会受到上一列图片inline:block的影响。而你在使用时需要时刻注意清除浮动，当内容不断变化时这很容易产生bug。<br>另一种inline-block的适用场景：横向导航栏。通常，我们一般会设置a元素display：block然后进行浮动来制作。有时候我会直接通过对列表元素设置display:inline来制作。如果在制作中，你需要设置不同的display属性来处理浮动，那么inline-block不失为一种更好的解决方案。<br>当你需要将元素排列成一行或者多行时，更倾向于考虑使用inline-block代替float。当然，直接使用table也是一种方法，他毕竟是专门用来处理横向与纵向排列的元素的。<br>如果你需要创建一个很复杂的包含行列的布局，table是你的最佳选择，不过你同样也可以考虑inline-block</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/01/15/display属性详解/" data-id="cjt55p63x000qsww3d7nspgba" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Front-end/">Front-end</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2016/01/18/H5-C3新特性/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            H5/C3新特性
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2016/01/11/CSS-hack/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">CSS hack</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+  
+    
+  <div class="comment" id="comments"></div>
+  <script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: '8m7KpaQUQaSlUvwPK8sIqf5Y-gzGzoHsz',
+      appKey: 'KOp47h4dG5uGounP1YLfL6kf',
+      placeholder: '来呀，造作啊！',
+      avatar:'mm',
+      guest_info: GUEST,
+      pageSize:'10' || 10,
+    })
+  </script>
+
+  
+  
+  
+  <div class="reward-box">
+    <div class="reward-btn">赞 赏</div>
+    <img class="reward-img" src="/images/reward.png">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <div class="reward-tip">微信扫一扫</div>
+    <script type="text/javascript">
+        var flag = false;
+        $('.reward-btn').click(function() {
+            flag = !flag;
+            flag ? ($('.reward-img').fadeIn() & $('.reward-tip').fadeIn() & $(this).html('谢 谢')) : ($('.reward-img').fadeOut() & $('.reward-tip').fadeOut() & $(this).html('赞 赏'));
+        })
+    </script>
+</div>
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 人生如逆旅，我亦是行人</li>
+      <li>Write by <a href="https://github.com/debugksir" target="_blank">白夜飞鱼</a>
+      </li><li><i class="fe fe-bar-chart"></i> <span id="busuanzi_value_site_pv"></span></li>
+      <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="人生如逆旅，我亦是行人"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/tags">分类</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="Web,Python,Spider,Photography,Designer,Story,other">
+  
+  
+    <meta name="description" content="以此记录知识与生活">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    Javascript数据类型 |
+    
+    人生如逆旅，我亦是行人</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-Javascript数据类型" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Javascript数据类型
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2015/11/13/Javascript数据类型/" class="article-date">
+  <time datetime="2015-11-13T11:57:32.000Z" itemprop="datePublished">2015-11-13</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JS/">JS</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="5种数据类型："><a href="#5种数据类型：" class="headerlink" title="5种数据类型："></a>5种数据类型：</h2><ul>
+<li>基本数据类型：Undefined、Null、Boolean、Number、String<ol>
+<li>基本类型值是指简单的数据段，5种基本类型是按值访问的，因为可以操作保存在变量中的实际值</li>
+<li>基本类型的值在内存中占据固定大小的空间，被保存在栈内存中。从一个变量向另一个变量复制基本类型的值，会创建这个值的一个副本。</li>
+<li>不能给基本类型的值添加属性</li>
+</ol>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><p>引用数据类型：Object</p>
+<ol>
+<li>引用类型值是指那些可以由多个值构成的对象。js不允许直接访问内存中的位置，也就是不能直接访问操作对象的内存空间。在操作对象时，实际上是在操作对象的引用而不是实际的对象。</li>
+<li>引用类型的值是对象，保存在堆内存中，包含引用类型值的变量实际上包含的并不是对象本身，而是一个指向该对象的指针。从一个变量向另一个变量复制引用类型的值，复制的其实是指针，因此两个变量最终都指向同一个对象。</li>
+<li>对于引用类型的值，可以为其添加属性和方法，也可以改变和删除其属性和方法</li>
+</ol>
+</li>
+<li><p>Undefined</p>
+<ol>
+<li>Undefined类型只有一个值，就是undefined</li>
+<li>var a &lt;=&gt; var a = undefined;   </li>
+<li>对于尚未声明过的变量，只能执行一项操作，就是使用typeof操作符检测其数据类型【但在严格模式下会导致错误】</li>
+<li>出现场景：<ul>
+<li>已声明未赋值的变量</li>
+<li>获取对象不存在的属性</li>
+<li>无返回值的函数的执行结果</li>
+<li>函数的参数没有传入</li>
+<li>void(expression)</li>
+</ul>
+</li>
+<li>类型转换<ul>
+<li>Boolean(undefined)：false</li>
+<li>Number(undefined):NaN</li>
+<li>String(undefined):’undefined’</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Null</p>
+<ol>
+<li>Null类型只有一个值，就是null,逻辑角度看，null值表示一个空对象指针</li>
+<li>如果定义的变量将用于保存对象，最好将该变量初始化为null</li>
+<li>实际上undefined值是派生自null值的，所以undefined == null</li>
+<li>出现场景：对象不存在时</li>
+<li>类型转换<ul>
+<li>Boolean(null)：false</li>
+<li>Number(null):0</li>
+<li>String(null):’null’       <blockquote>
+<p>注意:null是空对象指针，而[]是空数组，{}是空对象，三者不相同<br>注意null不能添加自定义属性</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Boolean</p>
+<ol>
+<li>Boolean类型只有两个值：true 和 false<br>2.出现场景：<ul>
+<li>条件语句导致系统执行的隐士类型转换</li>
+<li>字面量或变量定义</li>
+</ul>
+</li>
+<li>类型转换<ul>
+<li>Number(true): 1 || Number(false) : 0</li>
+<li>String(true):’true’ || String(false):’false’</li>
+</ul>
+</li>
+<li>Boolean()<ul>
+<li>Boolean(undefined):false</li>
+<li>Boolean(null):false</li>
+<li>Boolean(非空对象包括空数组[]和空对象{}):true</li>
+<li>Boolean(非0): true || Boolean(0和NaN):false</li>
+<li>Boolean(非空包括空格字符串):true || Boolean(‘’):false<blockquote>
+<p>[注意]true不一定等于1,false也不一定等于0</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Number</p>
+<ol>
+<li>Number类型使用IEEE754格式来表示整数和浮点数值<blockquote>
+<p>注意:可以用一个值-0来将其转换成一个数字</p>
+</blockquote>
+</li>
+<li>三种字面量格式是十进制、八进制、十六进制<ul>
+<li>八进制字面值的第一位必须是0，然后是八进制数字序列(0-7),如果字面值中的数值超出了范围，那么前导0将被忽略，后面的数值被当作十进制数解析</li>
+<li>八进制字面量在严格模式下是无效的，会导致js抛出错误</li>
+<li>十六进制字面值的前两位必须是0x,后跟十六进制数字序列，字母可大写可小写</li>
+<li>十六进制中字面值中的数值走出范围，如出现g,h等会报错</li>
+<li>在进行算术计算时，所有以八进制和十六进制表示的数值最终都将被转换成十进制数值</li>
+</ul>
+</li>
+<li>数值表示：<ul>
+<li>js中可以保存正0和负0，且被认为相等</li>
+<li>浮点数值：该数值中必须包含一个小数点，并且小数点后面必须至少有一位数字。<ol>
+<li>由于浮点型数值需要的内存空间是保存整数值的两倍，因此js会不失时机地将浮点数值转换成整数值，若小数点后没有跟任何数字或者浮点值本身表示的就是一个整数，这个数值会作为整数值来保存。</li>
+<li>浮点数值的最高精度是17位小数</li>
+<li>对于极大或者极小的数，可以用科学计数法e来表示的浮点数值来表示</li>
+<li>默认情况下，js会将小数点后面带有6个0以上的浮点数值转换为以e表示法表示的数值</li>
+<li>基于IEEE754数值的浮点计算的通病是舍入误差的问题。如：0.1+0.2 === 0.3(15个0)4</li>
+</ol>
+</li>
+<li>js中的数值范围是Number.MIN_VALUE(5e-324) ―― Number.MAX_VALUE(1.7976931348623157e+308)<ol>
+<li>如果超出正数范围，输出Infinity(正无穷大)，超出负数范围，输出-Infinity(负无穷大)</li>
+<li>+-Infinity不能参与数值计算</li>
+<li>Number.MAX_VALUE+1 != Infinity,因为计算机最多保存52位尾数位，保存不了1000多位，早就失去精度，即小数位全为0，所以相加不变</li>
+<li>Number.MIN_VALUE - 1 != -Infinity,也是同样的原因，所以结果为-1</li>
+<li>可以用isFinite()来确定一个数值是不是有穷的,包含着隐式类型转换Number()</li>
+<li>isFinite(NaN) //false</li>
+</ol>
+</li>
+<li>NaN<ol>
+<li>NaN与任何值都不相等，包括NaN本身</li>
+<li>任何涉及NaN的操作都会返回NaN</li>
+<li>isNaN()来判断这个数字是不是NaN,包含着隐式类型转换Number()</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>数值转换:Number()可用于任何类型，parseInt()和parseFloat专门用于把字符串转换成数值</p>
+<blockquote>
+<p>注意:Number()、parseInt()、parseFloat()可以接受各种进制的数字，但对于含数字的字符串并不适用<br>注意: Number()、parseInt()、parseFloat()中数字为1.2. 会报错，但字符串为’1.2.’则不会报错</p>
+</blockquote>
+<ol>
+<li><p>Number()</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Number(true):1 || Number(false):0</span><br><span class="line">Number(各种进制的数字)：运算后的十进制的数字，如1.0或1.或01会以1输出</span><br><span class="line">Number(undefined):NaN</span><br><span class="line">Number(null):0</span><br><span class="line">Number(字符串)：</span><br><span class="line">Number(只包含数字的十进制和十六进制的字符串)：运算后的十进制的数字</span><br><span class="line">[注意]字符串中不识别八进制，按照十进制数字处理</span><br><span class="line">Number(&apos;&apos;和&apos; &apos;):0</span><br><span class="line">Number(其他情况的字符串):NaN</span><br><span class="line">Number(对象)：</span><br><span class="line">Number([]和[0]和[-0]):0</span><br><span class="line">Number([数字])：运算后的数字</span><br><span class="line">Number([1,2]和&#123;&#125;和其他对象):NaN</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>2. parseInt()：在转换字符串时，会忽略字符串前面的空格，直到找到第一个非空格字符。如果第一个字符不是数字字符或者负号，parseInt()就会返回NaN。如果是，则继续解析，直到解析完成或者遇到非数字字符。
+    - parseInt()可以识别出各种进制的整数,但在解析八进制字面量的字符串，ECMAScript3会解析八进制，但ECMAScript5没有解析八进制的能力
+    - parseInt()函数提供第二个参数，表示多少进制，如：parseInt(&apos;123&apos;,16或10或2)
+    - parseInt(各种进制的数字)：运算后的十进制的数字，如1.0或1.或01会以1输出
+    - 因为parseInt()是专门用来处理字符串转换数字的，所以parseInt(其他类型包括&apos;&apos;)//NaN
+3. parseFloat():类似于parseInt()，会忽略字符串前面的空格，直到找到第一个非空格字符
+    - parseFloat()只能解析十进制字符串
+    - parseFloat(各种进制的数字)：运算后的十进制的数字，如1.0或1.或01会以1输出
+</code></pre><ul>
+<li><p>String:由单引号或双引号括起来的字符序列,任何字符串的长度都可以通过访问length属性获得</p>
+<ol>
+<li><p>字符字面量，也叫转义序列</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">\n 换行</span><br><span class="line">\t 制表</span><br><span class="line">\b 空格</span><br><span class="line">\r 回车</span><br><span class="line">\f 进纸</span><br><span class="line">\\ 斜杠</span><br><span class="line">\&apos; 单引号</span><br><span class="line">\&quot; 双引号</span><br><span class="line">\xnn 以十六进制nn表示一个字符(n为0-f)，如\x41表示&apos;A&apos;</span><br><span class="line">\unnnn 以十六进制nnnn表示一个Unicode字符(n为0-f)，如\u03a3表示希腊字符ε</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ECMAScript中的字符串是不可变的   </p>
+</li>
+<li>字符串连接需要先创建一个新字符串，然后在新字符串中填充两个需要拼接的字符串，最后再销毁原来的字符串。这个过程在后台发生，也是在某些旧版本浏览器(IE6)拼接字符串速度慢的原因，但后来已经解决了这个低效率问题</li>
+<li><p>字符串转换</p>
+<ul>
+<li>toString()<br>  Null和Undefined没有该方法<br>  Boolean、Object、String有该方法<br>  Number使用该方法可以传递基数2、8、10、16,如var num = 10;num.toString(2);//1010<br>  但10.toString(2)会报错,因为数字后面不能跟标识符</li>
+<li>String()<br>  有toString()方法，使用toString()方法<br>  String(null);//‘null’<br>  String(undefined);//‘undefined’   </li>
+<li>要把某个值转换为字符串，可以使用加号操作符把它与一个空字符串’’加在一起</li>
+</ul>
+</li>
+<li><p>如果数组中的某一项的值是null或者undefined，那么该值在join()、toLocaleString()、toString()和valueOf()方法返回的结果中以空字符串表示<br>最后给大家一个简单的例子说明下这五种基本类型的不同</p>
+</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/11/13/Javascript数据类型/" data-id="cjt55p65e002ysww367p240wr" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Front-end/">Front-end</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2015/12/01/Javascript高级篇浅谈/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            Javascript高级浅谈一二
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2015/11/13/Markdown-笔记/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">Markdown 笔记</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+  
+    
+  <div class="comment" id="comments"></div>
+  <script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: '8m7KpaQUQaSlUvwPK8sIqf5Y-gzGzoHsz',
+      appKey: 'KOp47h4dG5uGounP1YLfL6kf',
+      placeholder: '来呀，造作啊！',
+      avatar:'mm',
+      guest_info: GUEST,
+      pageSize:'10' || 10,
+    })
+  </script>
+
+  
+  
+  
+  <div class="reward-box">
+    <div class="reward-btn">赞 赏</div>
+    <img class="reward-img" src="/images/reward.png">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <div class="reward-tip">微信扫一扫</div>
+    <script type="text/javascript">
+        var flag = false;
+        $('.reward-btn').click(function() {
+            flag = !flag;
+            flag ? ($('.reward-img').fadeIn() & $('.reward-tip').fadeIn() & $(this).html('谢 谢')) : ($('.reward-img').fadeOut() & $('.reward-tip').fadeOut() & $(this).html('赞 赏'));
+        })
+    </script>
+</div>
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 人生如逆旅，我亦是行人</li>
+      <li>Write by <a href="https://github.com/debugksir" target="_blank">白夜飞鱼</a>
+      </li><li><i class="fe fe-bar-chart"></i> <span id="busuanzi_value_site_pv"></span></li>
+      <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="人生如逆旅，我亦是行人"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/tags">分类</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

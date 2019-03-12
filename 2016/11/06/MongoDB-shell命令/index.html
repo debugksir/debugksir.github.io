@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="Web,Python,Spider,Photography,Designer,Story,other">
+  
+  
+    <meta name="description" content="以此记录知识与生活">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    MongoDB-shell命令 |
+    
+    人生如逆旅，我亦是行人</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-MongoDB-shell命令" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MongoDB-shell命令
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2016/11/06/MongoDB-shell命令/" class="article-date">
+  <time datetime="2016-11-06T03:39:11.000Z" itemprop="datePublished">2016-11-06</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h1 style="text-align: center;">MongoDB shell 常用命令</h1>
+
+<blockquote>
+<p>关系数据的表的record 必须拥有field,mongoDB的一行数据以文档(document) 的形式,相在关系数据库中是一条记录,mongoDB的key可以不一样,在关系数据库中查询使用SQL,在mongoDB中使用find函数-&gt;基于BSON的特殊查询工具,mongodb的灵活度扩展度极高</p>
+</blockquote>
+<a id="more"></a>
+<blockquote>
+<p>创建一个.bat格式的文件,在文件中输入<code>mongo --dbpath 文件路径</code>,创建一个开设端口的.bat格式文件,在文件中输入<code>mongo 127.0.0.1:27017/admin</code> 分别打开即可开启数据库 </p>
+</blockquote>
+<ul>
+<li>创建一个数据库 <code>use[datebase]</code></li>
+<li>插入文档 <code>db.[documentName].insert({})</code></li>
+<li>查看所有数据库 <code>show dbs</code></li>
+<li>查看数据库中所有文档 <code>show collections</code></li>
+<li>查询文档数据 <code>db.[documentName].find()</code> 查询一条 <code>db.[documentNmae].findOne()</code></li>
+<li>批量插入文档 <code>1. 用mongo的应用驱动. 2.shell的for循环</code></li>
+<li>删除列表中的所有数据 <code>db.[documentName].remove()</code></li>
+<li>根据条件删除 <code>db.text.remove({name: &quot;ksir&quot;})</code></li>
+<li>删除库中的集合 <code>db.[documentName].drop()</code></li>
+<li>删除数据库 <code>db.dropDatabase()</code></li>
+<li>显示帮助 <code>数据库下的帮助:db.help(),集合下的帮助:db.[documentName].help()</code></li>
+<li>mongoDB的API <code>http://api.mongodb.org</code></li>
+<li>强硬的文档替换式更新操作 <code>db.[documentName].update({查询器},{修改器})</code></li>
+<li>显示数据库状态 <code>db.stats()</code></li>
+</ul>
+<blockquote>
+<p>主键冲突的时候会报错并且停止更新操作</p>
+</blockquote>
+<ul>
+<li>insertOrUpdate 操作 <code>如果存在数据就执行更新操作,否则执行插入操作 db.[documentName]({查询器},{修改器},true)</code></li>
+<li>批量更新操作 <code>当查修多条数据的时候默认修改第一条数据,如何批量修改数据: db.[documentName].update({查询器},{修改器},false,true)</code></li>
+<li><p>$addToSet与$each 结合完成批量数组更新 <code>db.text.update({_id:100},{$addToSet:{books:{$each:[&quot;JS&quot;,&quot;HTML&quot;,&quot;CSS&quot;,&quot;DB&quot;]}}})</code></p>
+</li>
+<li><p>数据库和集合的命名规范</p>
+</li>
+</ul>
+<blockquote>
+<p>不能是空字符串;不能含有’’,空格,$,/,\等;应全部小写;最多64个字节;不能与数据保留库名同名如”admin”,”local”,”config”;</p>
+</blockquote>
+<blockquote>
+<p>mongoDB 的shell内置Javascript引擎,可以直接执行js代码;shell可以使用eval</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/11/06/MongoDB-shell命令/" data-id="cjt55p63r000hsww3h2rj0a36" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-base/">Data-base</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2017/01/01/正则表达式/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            正则表达式
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2016/03/13/wamp的安装和环境配置/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">wamp的安装和环境配置</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+  
+    
+  <div class="comment" id="comments"></div>
+  <script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: '8m7KpaQUQaSlUvwPK8sIqf5Y-gzGzoHsz',
+      appKey: 'KOp47h4dG5uGounP1YLfL6kf',
+      placeholder: '来呀，造作啊！',
+      avatar:'mm',
+      guest_info: GUEST,
+      pageSize:'10' || 10,
+    })
+  </script>
+
+  
+  
+  
+  <div class="reward-box">
+    <div class="reward-btn">赞 赏</div>
+    <img class="reward-img" src="/images/reward.png">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <div class="reward-tip">微信扫一扫</div>
+    <script type="text/javascript">
+        var flag = false;
+        $('.reward-btn').click(function() {
+            flag = !flag;
+            flag ? ($('.reward-img').fadeIn() & $('.reward-tip').fadeIn() & $(this).html('谢 谢')) : ($('.reward-img').fadeOut() & $('.reward-tip').fadeOut() & $(this).html('赞 赏'));
+        })
+    </script>
+</div>
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 人生如逆旅，我亦是行人</li>
+      <li>Write by <a href="https://github.com/debugksir" target="_blank">白夜飞鱼</a>
+      </li><li><i class="fe fe-bar-chart"></i> <span id="busuanzi_value_site_pv"></span></li>
+      <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="人生如逆旅，我亦是行人"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/tags">分类</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>
