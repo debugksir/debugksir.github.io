@@ -891,6 +891,10 @@ body ::selection {
   background: #5c6b72;
   color: #e6e6e6;
 }
+p {
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+}
 a {
   color: #127ea9;
 }
@@ -906,6 +910,14 @@ a.disabled {
 img {
   max-width: 100%;
 }
+.tags {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
 .tags a {
   padding: 0.3rem 1rem;
   text-decoration: none;
@@ -916,6 +928,7 @@ img {
   font-size: 2rem;
   color: #999;
   margin-right: 2rem;
+  margin-bottom: 2rem;
 }
 .one-tag-list {
   margin-top: 2rem;
@@ -983,6 +996,10 @@ img {
   width: 25rem;
   height: 25rem;
   display: none;
+}
+.reward-box .reward-img-common {
+  margin: 2rem 0;
+  max-height: 32rem;
 }
 .reward-box .reward-tip {
   font-size: 1.5rem;
@@ -1215,7 +1232,7 @@ img {
   height: auto;
 }
 .video .brand {
-  width: 3.2rem;
+  width: auto;
 }
 .video-frame {
   position: absolute;
