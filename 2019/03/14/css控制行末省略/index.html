@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>
-    解决盒子塌陷的几种方法 |
+    css控制行末省略 |
     
     人生如逆旅，我亦是行人</title>
   
@@ -27,7 +27,7 @@
 <body>
 <main class="content">
   <section class="outer">
-  <article id="post-解决盒子塌陷的几种方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <article id="post-css控制行末省略" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -35,7 +35,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      解决盒子塌陷的几种方法
+      css控制行末省略
     </h1>
   
 
@@ -44,8 +44,8 @@
 
     
       <div class="article-meta">
-        <a href="/2016/01/03/解决盒子塌陷的几种方法/" class="article-date">
-  <time datetime="2016-01-03T13:06:43.000Z" itemprop="datePublished">2016-01-03</time>
+        <a href="/2019/03/14/css控制行末省略/" class="article-date">
+  <time datetime="2019-03-14T07:23:19.000Z" itemprop="datePublished">2019-03-14</time>
 </a>
         
   <div class="article-category">
@@ -59,25 +59,18 @@
       
       
       
-        <h2 id="解决盒子塌陷的几种方案"><a href="#解决盒子塌陷的几种方案" class="headerlink" title="解决盒子塌陷的几种方案"></a>解决盒子塌陷的几种方案</h2><ul>
-<li>给父盒子添加高度</li>
-<li>给父盒子添加<code>clear: both</code>样式 (缺点:两个div之间的margin值失效)</li>
-<li>内墙法</li>
-</ul>
+        <blockquote>
+<p>话不多说，直接上代码</p>
+</blockquote>
 <a id="more"></a>
-<p><pre><br>.clearfloat:after{<br>    display:block;<br>    clear:both;<br>    content:””;<br>    visibility:hidden;<br>    height:0;<br>    width: 0;<br>} </pre></p>
-<p>.clearfloat{<br>    zoom:1<br>}<br></p>
-<ul>
-<li>给父盒子设置<code>overflow: auto</code> (缺点: 可能会出现滚动条)</li>
-</ul>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/* 一行 */</span><br><span class="line">.overWords &#123;</span><br><span class="line">	overflow: hidden;</span><br><span class="line">	text-overflow:ellipsis;</span><br><span class="line">	white-space: nowrap;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 多行 */</span><br><span class="line">.overLine2 &#123;</span><br><span class="line">	display: -webkit-box;</span><br><span class="line">	-webkit-box-orient: vertical;</span><br><span class="line">	-webkit-line-clamp: 2;</span><br><span class="line">	overflow: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
     
 
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/03/解决盒子塌陷的几种方法/" data-id="cjt6vy5pt002u7cw33s8dcsbn" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2019/03/14/css控制行末省略/" data-id="cjt6vy5ol000u7cw3p5ga3sr7" class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Front-end/">Front-end</a></li></ul>
 
@@ -89,19 +82,19 @@
     
   <nav class="article-nav">
     
-      <a href="/2016/01/05/Javascript面向对象篇-2/" class="article-nav-link">
+      <a href="/2019/03/14/js小技巧/" class="article-nav-link">
         <strong class="article-nav-caption">上一页</strong>
         <div class="article-nav-title">
           
-            Javascript面向对象篇 2
+            js小技巧
           
         </div>
       </a>
     
     
-      <a href="/2016/01/03/Javascript面向对象篇-1/" class="article-nav-link">
+      <a href="/2019/03/13/小程序适配iPhoneX/" class="article-nav-link">
         <strong class="article-nav-caption">下一页</strong>
-        <div class="article-nav-title">Javascript面向对象篇 1</div>
+        <div class="article-nav-title">小程序适配iPhone X</div>
       </a>
     
   </nav>
