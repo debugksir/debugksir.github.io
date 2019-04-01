@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[css控制行末省略]]></title>
+    <title><![CDATA[css中使用vw感悟]]></title>
     <url>%2F2019%2F03%2F16%2Fcss%E4%B8%ADvw%E4%BD%BF%E7%94%A8%E6%84%9F%E6%82%9F%2F</url>
     <content type="text"><![CDATA[避免媒体查询的繁琐，我尝试了使用vw做适配 此方法适用于写H5以及对浏览器兼容性要求不高的项目 说明：1vw 相当于屏幕的1%的宽度， 1vh相当于屏幕的1%的高度， 根据这一特性，我把设计师的设计稿的宽度设置成1000px，高度等比例变化（设置方法：用ps打开设计稿，找到编辑菜单栏中，图像=&gt;图像大小，注意勾选宽度和高度旁边的锁链，这个代表着等比例放大缩小） 那么我们把设计稿上面的元素的宽度除以10便是我们vw的单位，比方说设计稿上的广告栏长度900px，那对应的css长度为90vw，100%宽度就代表100vw;字体也同样适用 结果显示，在各平台乃至pc端上完美运行 代码既视感如下 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748.header &#123; box-sizing: border-box; padding: 0 4.8vw; height: 11.8vw; width: 100vw; border-top: .01vw solid #e2e2e2; border-bottom: .01vw solid #e2e2e2; display: flex; flex-direction: row; justify-content: space-between; align-items: center;&#125;.header-arr &#123; padding-left: 3vw; width: 4.8vw; height: 4.8vw;&#125;.header-title &#123; font-size: 4.8vw; font-weight: bold; color: #2e2e2e;&#125;.search-text &#123; width: 7.8vw; text-align: right; display: none; font-size: 3.7vw; color: #333;&#125;.topbar &#123; box-sizing: border-box; padding: 0 4.8vw; width: 100vw; height: 12.2vw; display: flex; flex-direction: row; justify-content: space-between; align-items: center; border-bottom: .01vw solid #e2e2e2;&#125;.searchbar &#123; box-sizing: border-box; padding: 0 4.8vw; width: 100vw; height: 12.2vw; border-bottom: .01vw solid #e2e2e2; display: none;&#125;]]></content>
       <categories>
