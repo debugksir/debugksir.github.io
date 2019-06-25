@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="Web,Python,Spider,Photography,Designer,Story,other">
+  
+  
+    <meta name="description" content="以此记录知识与生活">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    python富文本转word |
+    
+    人生如逆旅，我亦是行人</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-python富文本转world" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python富文本转word
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/06/22/python富文本转world/" class="article-date">
+  <time datetime="2019-06-22T04:25:09.000Z" itemprop="datePublished">2019-06-22</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python工具/">python工具</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="富文本转word"><a href="#富文本转word" class="headerlink" title="富文本转word"></a>富文本转word</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">#coding=utf-8</span><br><span class="line">from docx import Document</span><br><span class="line">from docx.shared import Pt, RGBColor</span><br><span class="line">from docx.oxml.ns import qn</span><br><span class="line">from lxml import etree</span><br><span class="line"># from docx.enum.text import WD_ALIGN_PARAGRAPH</span><br><span class="line"></span><br><span class="line">data = [&#123;</span><br><span class="line">    &apos;document_title&apos;: u&apos;&lt;h1&gt;写一个题目阿斯蒂芬按时&lt;/h1&gt;&apos;,</span><br><span class="line">    &apos;document_content&apos;: u&quot;&quot;&quot;&lt;p&gt;你好&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;你好中国&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;&lt;strong&gt;hello &lt;/strong&gt;world&lt;/p&gt;</span><br><span class="line">&quot;&quot;&quot; </span><br><span class="line">&#125;,&#123;</span><br><span class="line">    &apos;document_title&apos;: u&apos;写一个题目阿斯蒂芬按时&apos;,</span><br><span class="line">    &apos;document_content&apos;: u&quot;&quot;&quot;&lt;p&gt;你好&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;你好中国&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;&lt;strong&gt;hello &lt;/strong&gt;world&lt;/p&gt;</span><br><span class="line">&quot;&quot;&quot; </span><br><span class="line">&#125;]</span><br><span class="line"></span><br><span class="line"># 格式化富文本</span><br><span class="line">def clean_richtext(richtext):</span><br><span class="line">    response = etree.HTML(text=richtext)</span><br><span class="line">    return response.xpath(&apos;string(.)&apos;)</span><br><span class="line"></span><br><span class="line">def render_data(data):</span><br><span class="line">    document = Document()</span><br><span class="line">    font_name = u&apos;宋体&apos;</span><br><span class="line"></span><br><span class="line">    for item in data:</span><br><span class="line">        title_text = clean_richtext(item[&apos;document_title&apos;])</span><br><span class="line">        content_text = clean_richtext(item[&apos;document_content&apos;])</span><br><span class="line">        title = document.add_heading()</span><br><span class="line">        paragraph = document.add_paragraph()</span><br><span class="line">        # 居中</span><br><span class="line">        # title.alignment = WD_ALIGN_PARAGRAPH.CENTER</span><br><span class="line">        title_run = title.add_run(title_text)</span><br><span class="line">        title_run.font.size = Pt(22)</span><br><span class="line">        title_run.font.color.rgb = RGBColor(0, 0, 0)</span><br><span class="line">        title_run.font.name = font_name</span><br><span class="line">        title_run._element.rPr.rFonts.set(qn(&apos;w:eastAsia&apos;), font_name)</span><br><span class="line">        para_run = paragraph.add_run(content_text)</span><br><span class="line">        para_run.font.size = Pt(10.5)</span><br><span class="line">        para_run.font.name = font_name</span><br><span class="line">        para_run._element.rPr.rFonts.set(qn(&apos;w:eastAsia&apos;), font_name)</span><br><span class="line"></span><br><span class="line">    document.save(&apos;test.docx&apos;)</span><br><span class="line"></span><br><span class="line">render_data(data)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/22/python富文本转world/" data-id="cjxb88etk002mf8w3qktlonzg" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2019/04/25/django笔记/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">Django命令</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+  
+    
+  <div class="comment" id="comments"></div>
+  <script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: '8m7KpaQUQaSlUvwPK8sIqf5Y-gzGzoHsz',
+      appKey: 'KOp47h4dG5uGounP1YLfL6kf',
+      placeholder: '来呀，造作啊！',
+      avatar:'mm',
+      guest_info: GUEST,
+      pageSize:'10' || 10,
+    })
+  </script>
+
+  
+  
+  
+    <div class="reward-box">
+    <div class="reward-btn">赞 赏</div>
+    <img class="reward-img" src="/images/reward.png">
+    <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <div class="reward-tip">微信扫一扫</div>
+    <script type="text/javascript">
+        var flag = false;
+        $('.reward-btn').click(function() {
+            flag = !flag;
+            flag ? ($('.reward-img').fadeIn() & $('.reward-tip').fadeIn() & $(this).html('谢 谢')) : ($('.reward-img').fadeOut() & $('.reward-tip').fadeOut() & $(this).html('赞 赏'));
+        })
+    </script>
+</div>
+  
+  
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 人生如逆旅，我亦是行人</li>
+      <li>Write by <a href="https://github.com/debugksir" target="_blank">白夜飞鱼</a>
+      </li><li><i class="fe fe-bar-chart"></i> <span id="busuanzi_value_site_pv"></span></li>
+      <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="人生如逆旅，我亦是行人"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/tags">分类</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

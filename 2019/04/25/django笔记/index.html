@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="Web,Python,Spider,Photography,Designer,Story,other">
+  
+  
+    <meta name="description" content="以此记录知识与生活">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    Django命令 |
+    
+    人生如逆旅，我亦是行人</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-django笔记" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Django命令
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/04/25/django笔记/" class="article-date">
+  <time datetime="2019-04-25T02:20:09.000Z" itemprop="datePublished">2019-04-25</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Django/">Django</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="setting相关"><a href="#setting相关" class="headerlink" title="setting相关"></a>setting相关</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 设置mysql数据库:</span><br><span class="line"></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    &apos;default&apos;: &#123;</span><br><span class="line">        &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,   # 数据库引擎</span><br><span class="line">        &apos;NAME&apos;: &apos;for_django&apos;,         # 你要存储数据的库名，事先要创建之</span><br><span class="line">        &apos;USER&apos;: &apos;root&apos;,         # 数据库用户名</span><br><span class="line">        &apos;PASSWORD&apos;: &apos;root&apos;,     # 密码</span><br><span class="line">        &apos;HOST&apos;: &apos;localhost&apos;,    # 主机</span><br><span class="line">        &apos;PORT&apos;: &apos;3306&apos;,         # 数据库使用的端口</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 设置中文</span><br><span class="line">LANGUAGE_CODE = &apos;zh-hans&apos;</span><br><span class="line"></span><br><span class="line"># 设置时区</span><br><span class="line">TIME_ZONE = &apos;Asia/Shanghai&apos;</span><br><span class="line"></span><br><span class="line"># 允许所有hosts</span><br><span class="line">ALLOWED_HOSTS = [&quot;*&quot;]</span><br></pre></td></tr></table></figure>
+<h3 id="路由相关"><a href="#路由相关" class="headerlink" title="路由相关"></a>路由相关</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># appname/appname/urls.py</span><br><span class="line"></span><br><span class="line">from django.urls import path, include</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(&apos;projectname/&apos;, include(&apos;projectname.urls&apos;)),</span><br><span class="line">    ...</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"># appname/projectname/urls.py</span><br><span class="line"></span><br><span class="line">from django.urls import path</span><br><span class="line">from . import views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(&apos;&apos;, views.index, name=&apos;index&apos;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="model相关"><a href="#model相关" class="headerlink" title="model相关"></a>model相关</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line">class Question(models.Model):</span><br><span class="line">    question_text = models.CharField(max_length=200)</span><br><span class="line">    published_date = models.DateTimeField(&apos;date published&apos;)</span><br><span class="line">    class Meta():</span><br><span class="line">        db_table = &apos;forksir_question&apos;  # 定义表名</span><br><span class="line">        verbose_name_plural = &apos;1.问题&apos;  # 定义管理界面表标题</span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.question_text  # 设置默认输出的表字段</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/25/django笔记/" data-id="cjxb88es6000xf8w37azbf16z" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/06/22/python富文本转world/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            python富文本转word
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/04/14/vue+mint构建项目/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">vue+mint构建项目</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+  
+    
+  <div class="comment" id="comments"></div>
+  <script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: '8m7KpaQUQaSlUvwPK8sIqf5Y-gzGzoHsz',
+      appKey: 'KOp47h4dG5uGounP1YLfL6kf',
+      placeholder: '来呀，造作啊！',
+      avatar:'mm',
+      guest_info: GUEST,
+      pageSize:'10' || 10,
+    })
+  </script>
+
+  
+  
+  
+    <div class="reward-box">
+    <div class="reward-btn">赞 赏</div>
+    <img class="reward-img" src="/images/reward.png">
+    <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <div class="reward-tip">微信扫一扫</div>
+    <script type="text/javascript">
+        var flag = false;
+        $('.reward-btn').click(function() {
+            flag = !flag;
+            flag ? ($('.reward-img').fadeIn() & $('.reward-tip').fadeIn() & $(this).html('谢 谢')) : ($('.reward-img').fadeOut() & $('.reward-tip').fadeOut() & $(this).html('赞 赏'));
+        })
+    </script>
+</div>
+  
+  
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 人生如逆旅，我亦是行人</li>
+      <li>Write by <a href="https://github.com/debugksir" target="_blank">白夜飞鱼</a>
+      </li><li><i class="fe fe-bar-chart"></i> <span id="busuanzi_value_site_pv"></span></li>
+      <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="人生如逆旅，我亦是行人"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/tags">分类</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

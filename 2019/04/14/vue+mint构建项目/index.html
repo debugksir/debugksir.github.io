@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="Web,Python,Spider,Photography,Designer,Story,other">
+  
+  
+    <meta name="description" content="以此记录知识与生活">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    vue+mint构建项目 |
+    
+    人生如逆旅，我亦是行人</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-vue+mint构建项目" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue+mint构建项目
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/04/14/vue+mint构建项目/" class="article-date">
+  <time datetime="2019-04-14T02:35:29.000Z" itemprop="datePublished">2019-04-14</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="安装vue-cli"><a href="#安装vue-cli" class="headerlink" title="安装vue-cli"></a>安装vue-cli</h3><blockquote>
+<p><code>npm install -g vue-cli</code></p>
+</blockquote>
+<h3 id="生成vue项目目录"><a href="#生成vue项目目录" class="headerlink" title="生成vue项目目录"></a>生成vue项目目录</h3><blockquote>
+<p><code>vue init webpack projectname</code></p>
+</blockquote>
+<h3 id="安装mint-ui"><a href="#安装mint-ui" class="headerlink" title="安装mint-ui"></a>安装mint-ui</h3><blockquote>
+<p><code>npm install -g mint-ui</code></p>
+</blockquote>
+<h3 id="在项目中引入mint-ui"><a href="#在项目中引入mint-ui" class="headerlink" title="在项目中引入mint-ui"></a>在项目中引入mint-ui</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line"></span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import MintUI from &apos;mint-ui&apos;</span><br><span class="line">import &apos;mint-ui/lib/style.css&apos;</span><br><span class="line">import App from &apos;./App.vue&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(MintUI)</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &apos;#app&apos;,</span><br><span class="line">  components: &#123; App &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/14/vue+mint构建项目/" data-id="cjxb88etr0030f8w3kx9wquxd" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/front-end/">front-end</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/04/25/django笔记/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            Django命令
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/04/13/mysql远程连接/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">mysql 远程连接</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+  
+    
+  <div class="comment" id="comments"></div>
+  <script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: '8m7KpaQUQaSlUvwPK8sIqf5Y-gzGzoHsz',
+      appKey: 'KOp47h4dG5uGounP1YLfL6kf',
+      placeholder: '来呀，造作啊！',
+      avatar:'mm',
+      guest_info: GUEST,
+      pageSize:'10' || 10,
+    })
+  </script>
+
+  
+  
+  
+    <div class="reward-box">
+    <div class="reward-btn">赞 赏</div>
+    <img class="reward-img" src="/images/reward.png">
+    <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <div class="reward-tip">微信扫一扫</div>
+    <script type="text/javascript">
+        var flag = false;
+        $('.reward-btn').click(function() {
+            flag = !flag;
+            flag ? ($('.reward-img').fadeIn() & $('.reward-tip').fadeIn() & $(this).html('谢 谢')) : ($('.reward-img').fadeOut() & $('.reward-tip').fadeOut() & $(this).html('赞 赏'));
+        })
+    </script>
+</div>
+  
+  
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 人生如逆旅，我亦是行人</li>
+      <li>Write by <a href="https://github.com/debugksir" target="_blank">白夜飞鱼</a>
+      </li><li><i class="fe fe-bar-chart"></i> <span id="busuanzi_value_site_pv"></span></li>
+      <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="人生如逆旅，我亦是行人"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/tags">分类</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

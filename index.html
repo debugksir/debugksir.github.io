@@ -60,6 +60,503 @@
 
     
       
+        <article id="post-python富文本转world" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/06/22/python富文本转world/">python富文本转word</a>
+    </h2>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/06/22/python富文本转world/" class="article-date">
+  <time datetime="2019-06-22T04:25:09.000Z" itemprop="datePublished">2019-06-22</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python工具/">python工具</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="富文本转word"><a href="#富文本转word" class="headerlink" title="富文本转word"></a>富文本转word</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">#coding=utf-8</span><br><span class="line">from docx import Document</span><br><span class="line">from docx.shared import Pt, RGBColor</span><br><span class="line">from docx.oxml.ns import qn</span><br><span class="line">from lxml import etree</span><br><span class="line"># from docx.enum.text import WD_ALIGN_PARAGRAPH</span><br><span class="line"></span><br><span class="line">data = [&#123;</span><br><span class="line">    &apos;document_title&apos;: u&apos;&lt;h1&gt;写一个题目阿斯蒂芬按时&lt;/h1&gt;&apos;,</span><br><span class="line">    &apos;document_content&apos;: u&quot;&quot;&quot;&lt;p&gt;你好&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;你好中国&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;&lt;strong&gt;hello &lt;/strong&gt;world&lt;/p&gt;</span><br><span class="line">&quot;&quot;&quot; </span><br><span class="line">&#125;,&#123;</span><br><span class="line">    &apos;document_title&apos;: u&apos;写一个题目阿斯蒂芬按时&apos;,</span><br><span class="line">    &apos;document_content&apos;: u&quot;&quot;&quot;&lt;p&gt;你好&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;你好中国&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;&lt;strong&gt;hello &lt;/strong&gt;world&lt;/p&gt;</span><br><span class="line">&quot;&quot;&quot; </span><br><span class="line">&#125;]</span><br><span class="line"></span><br><span class="line"># 格式化富文本</span><br><span class="line">def clean_richtext(richtext):</span><br><span class="line">    response = etree.HTML(text=richtext)</span><br><span class="line">    return response.xpath(&apos;string(.)&apos;)</span><br><span class="line"></span><br><span class="line">def render_data(data):</span><br><span class="line">    document = Document()</span><br><span class="line">    font_name = u&apos;宋体&apos;</span><br><span class="line"></span><br><span class="line">    for item in data:</span><br><span class="line">        title_text = clean_richtext(item[&apos;document_title&apos;])</span><br><span class="line">        content_text = clean_richtext(item[&apos;document_content&apos;])</span><br><span class="line">        title = document.add_heading()</span><br><span class="line">        paragraph = document.add_paragraph()</span><br><span class="line">        # 居中</span><br><span class="line">        # title.alignment = WD_ALIGN_PARAGRAPH.CENTER</span><br><span class="line">        title_run = title.add_run(title_text)</span><br><span class="line">        title_run.font.size = Pt(22)</span><br><span class="line">        title_run.font.color.rgb = RGBColor(0, 0, 0)</span><br><span class="line">        title_run.font.name = font_name</span><br><span class="line">        title_run._element.rPr.rFonts.set(qn(&apos;w:eastAsia&apos;), font_name)</span><br><span class="line">        para_run = paragraph.add_run(content_text)</span><br><span class="line">        para_run.font.size = Pt(10.5)</span><br><span class="line">        para_run.font.name = font_name</span><br><span class="line">        para_run._element.rPr.rFonts.set(qn(&apos;w:eastAsia&apos;), font_name)</span><br><span class="line"></span><br><span class="line">    document.save(&apos;test.docx&apos;)</span><br><span class="line"></span><br><span class="line">render_data(data)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/22/python富文本转world/" data-id="cjxb88etk002mf8w3qktlonzg" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  
+</article>
+
+
+
+      
+        <article id="post-django笔记" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/04/25/django笔记/">Django命令</a>
+    </h2>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/04/25/django笔记/" class="article-date">
+  <time datetime="2019-04-25T02:20:09.000Z" itemprop="datePublished">2019-04-25</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Django/">Django</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="setting相关"><a href="#setting相关" class="headerlink" title="setting相关"></a>setting相关</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 设置mysql数据库:</span><br><span class="line"></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    &apos;default&apos;: &#123;</span><br><span class="line">        &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,   # 数据库引擎</span><br><span class="line">        &apos;NAME&apos;: &apos;for_django&apos;,         # 你要存储数据的库名，事先要创建之</span><br><span class="line">        &apos;USER&apos;: &apos;root&apos;,         # 数据库用户名</span><br><span class="line">        &apos;PASSWORD&apos;: &apos;root&apos;,     # 密码</span><br><span class="line">        &apos;HOST&apos;: &apos;localhost&apos;,    # 主机</span><br><span class="line">        &apos;PORT&apos;: &apos;3306&apos;,         # 数据库使用的端口</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 设置中文</span><br><span class="line">LANGUAGE_CODE = &apos;zh-hans&apos;</span><br><span class="line"></span><br><span class="line"># 设置时区</span><br><span class="line">TIME_ZONE = &apos;Asia/Shanghai&apos;</span><br><span class="line"></span><br><span class="line"># 允许所有hosts</span><br><span class="line">ALLOWED_HOSTS = [&quot;*&quot;]</span><br></pre></td></tr></table></figure>
+<h3 id="路由相关"><a href="#路由相关" class="headerlink" title="路由相关"></a>路由相关</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># appname/appname/urls.py</span><br><span class="line"></span><br><span class="line">from django.urls import path, include</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(&apos;projectname/&apos;, include(&apos;projectname.urls&apos;)),</span><br><span class="line">    ...</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"># appname/projectname/urls.py</span><br><span class="line"></span><br><span class="line">from django.urls import path</span><br><span class="line">from . import views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(&apos;&apos;, views.index, name=&apos;index&apos;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="model相关"><a href="#model相关" class="headerlink" title="model相关"></a>model相关</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line">class Question(models.Model):</span><br><span class="line">    question_text = models.CharField(max_length=200)</span><br><span class="line">    published_date = models.DateTimeField(&apos;date published&apos;)</span><br><span class="line">    class Meta():</span><br><span class="line">        db_table = &apos;forksir_question&apos;  # 定义表名</span><br><span class="line">        verbose_name_plural = &apos;1.问题&apos;  # 定义管理界面表标题</span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.question_text  # 设置默认输出的表字段</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/25/django笔记/" data-id="cjxb88es6000xf8w37azbf16z" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  
+</article>
+
+
+
+      
+        <article id="post-vue+mint构建项目" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/04/14/vue+mint构建项目/">vue+mint构建项目</a>
+    </h2>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/04/14/vue+mint构建项目/" class="article-date">
+  <time datetime="2019-04-14T02:35:29.000Z" itemprop="datePublished">2019-04-14</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="安装vue-cli"><a href="#安装vue-cli" class="headerlink" title="安装vue-cli"></a>安装vue-cli</h3><blockquote>
+<p><code>npm install -g vue-cli</code></p>
+</blockquote>
+<h3 id="生成vue项目目录"><a href="#生成vue项目目录" class="headerlink" title="生成vue项目目录"></a>生成vue项目目录</h3><blockquote>
+<p><code>vue init webpack projectname</code></p>
+</blockquote>
+<h3 id="安装mint-ui"><a href="#安装mint-ui" class="headerlink" title="安装mint-ui"></a>安装mint-ui</h3><blockquote>
+<p><code>npm install -g mint-ui</code></p>
+</blockquote>
+<h3 id="在项目中引入mint-ui"><a href="#在项目中引入mint-ui" class="headerlink" title="在项目中引入mint-ui"></a>在项目中引入mint-ui</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line"></span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import MintUI from &apos;mint-ui&apos;</span><br><span class="line">import &apos;mint-ui/lib/style.css&apos;</span><br><span class="line">import App from &apos;./App.vue&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(MintUI)</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &apos;#app&apos;,</span><br><span class="line">  components: &#123; App &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/14/vue+mint构建项目/" data-id="cjxb88etr0030f8w3kx9wquxd" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/front-end/">front-end</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  
+</article>
+
+
+
+      
+        <article id="post-mysql远程连接" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/04/13/mysql远程连接/">mysql 远程连接</a>
+    </h2>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/04/13/mysql远程连接/" class="article-date">
+  <time datetime="2019-04-13T02:32:11.000Z" itemprop="datePublished">2019-04-13</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <blockquote>
+<p>注：数据库环境为linux</p>
+</blockquote>
+<blockquote>
+<p>防火墙</p>
+<ul>
+<li>查看防火墙状态：<code>sudo ufw status</code></li>
+<li>关闭防火墙：<code>sudo ufw enable</code></li>
+<li>打开防火墙： <code>sudo ufw disable</code></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>查看数据库端口</p>
+<ul>
+<li>登录数据库 <code>mysql -uroot -p</code></li>
+<li>查询端口命令 <code>show global variables like &#39;port&#39;;</code></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>允许数据库端口进行数据传输</p>
+<ul>
+<li>假设数据库端口为3306 <code>iptables -I INPUT -s 0/0 -p tcp --dport 3306 -j ACCEPT</code></li>
+<li>检查命令： <code>iptables -L -n|grep 3306</code>， 如果结果为： <code>ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:3306</code>,表示以允许</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>管理员赋权给远程用户</p>
+<ul>
+<li>登录数据库 <code>mysql -uroot -p</code></li>
+<li>赋权： <code>grant all privileges on *.* to &#39;newname&#39;@&#39;%&#39; identified by &#39;password&#39; with grant option;</code> （newname表示远程用户名，password为密码 <em>.</em>赋予表示所有权利，’%’表示所有远程机器ip都可以访问）</li>
+<li>刷新权限： <code>flush privileges;</code></li>
+<li>检查用户  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use mysql;</span><br><span class="line">Reading table information for completion of table and column names</span><br><span class="line">You can turn off this feature to get a quicker startup with -A</span><br><span class="line"></span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; select host, user from user;</span><br><span class="line">+-----------+------------------+</span><br><span class="line">| host      | user             |</span><br><span class="line">+-----------+------------------+</span><br><span class="line">| %         | ksir             |</span><br><span class="line">| %         | root             |</span><br><span class="line">| localhost | debian-sys-maint |</span><br><span class="line">| localhost | mysql.session    |</span><br><span class="line">| localhost | mysql.sys        |</span><br><span class="line">+-----------+------------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>修改<code>~/etc/mysql</code>下的mysql配置文件<code>my.cnf</code>, 有些版本配置文件为<code>mysql.conf.d/mysql.cnf</code>，将<code>bind-address = 127.0.0.1</code>改成<code>bind-address = 0.0.0.0</code></p>
+</blockquote>
+<blockquote>
+<p>重启mysql服务<code>service mysql restart</code></p>
+</blockquote>
+<blockquote>
+<p>远程连接:<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\ksir&gt;mysql -h 192.168.***.*** -uksir -p</span><br><span class="line">Enter password: *******</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 6</span><br><span class="line">Server version: 5.7.25-0ubuntu0.16.04.2 (Ubuntu)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights       reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input       statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>enjoy!</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/13/mysql远程连接/" data-id="cjxb88etw003bf8w3x86u20hj" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  
+</article>
+
+
+
+      
+        <article id="post-Flask-sqlachemy中lazy参数" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/04/10/Flask-sqlachemy中lazy参数/">Flask-sqlachemy中lazy参数</a>
+    </h2>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/04/10/Flask-sqlachemy中lazy参数/" class="article-date">
+  <time datetime="2019-04-10T03:14:09.000Z" itemprop="datePublished">2019-04-10</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Flask/">Flask</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="lazy-的几个参数决定了-SQLAlchemy-什么时候从数据库中加载数据，官网解释如下"><a href="#lazy-的几个参数决定了-SQLAlchemy-什么时候从数据库中加载数据，官网解释如下" class="headerlink" title="lazy 的几个参数决定了 SQLAlchemy 什么时候从数据库中加载数据，官网解释如下"></a>lazy 的几个参数决定了 SQLAlchemy 什么时候从数据库中加载数据，官网解释如下</h3><ul>
+<li>select: (which is the default) means that SQLAlchemy will load the data as necessary in one go using a standard select statement.</li>
+<li>joined: tells SQLAlchemy to load the relationship in the same query as the parent using a JOIN statement.</li>
+<li>subquery: works like ‘joined’ but instead SQLAlchemy will use a subquery.</li>
+<li>dynamic : is special and useful if you have many items. Instead of loading the items SQLAlchemy will return another query object which you can further refine before loading the items. This is usually what you want if you expect more than a handful of items for this relationship</li>
+</ul>
+
+      
+    </div>
+    
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/10/Flask-sqlachemy中lazy参数/" data-id="cjxb88etx003df8w3hykulshx" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  
+</article>
+
+
+
+      
+        <article id="post-html浏览器不缩放" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/04/08/html浏览器不缩放/">浏览器不缩放</a>
+    </h2>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/04/08/html浏览器不缩放/" class="article-date">
+  <time datetime="2019-04-08T12:24:17.000Z" itemprop="datePublished">2019-04-08</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HTML/">HTML</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no&quot;&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/08/html浏览器不缩放/" data-id="cjxb88esa0018f8w3lae0pwx2" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Front-end/">Front-end</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  
+</article>
+
+
+
+      
+        <article id="post-python数据库驱动比较" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/04/08/python数据库驱动比较/">python数据库驱动比较</a>
+    </h2>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/04/08/python数据库驱动比较/" class="article-date">
+  <time datetime="2019-04-08T07:36:28.000Z" itemprop="datePublished">2019-04-08</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="mysql-connector-python"><a href="#mysql-connector-python" class="headerlink" title="mysql-connector-python"></a>mysql-connector-python</h3><ul>
+<li>Officially supported by Oracle</li>
+<li>Pure python</li>
+<li>A little slow</li>
+<li>Not compatible with MySQLdb</li>
+</ul>
+<h3 id="pymysql"><a href="#pymysql" class="headerlink" title="pymysql"></a>pymysql</h3><ul>
+<li>Pure python</li>
+<li>Faster than mysql-connector</li>
+<li>Almost completely compatible with MySQLdb, after calling pymysql.install_as_MySQLdb()</li>
+</ul>
+<h3 id="mysqlclient"><a href="#mysqlclient" class="headerlink" title="mysqlclient"></a>mysqlclient</h3><p>Django’s recommended library.<br>Friendly fork of the original MySQLdb, hopes to merge back some day.<br>The fastest implementation, as it is C based.<br>The most compatible with MySQLdb, as it is a forkDebian and Ubuntu use it to provide both python-mysqldb andpython3-mysqldb packages.</p>
+
+      
+    </div>
+    
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/08/python数据库驱动比较/" data-id="cjxb88etm002qf8w348a2e50z" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  
+</article>
+
+
+
+      
         <article id="post-css中vw使用感悟" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -107,7 +604,69 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/16/css中vw使用感悟/" data-id="cju7rco3r000cfow312tohswn" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2019/03/16/css中vw使用感悟/" data-id="cjxb88es1000qf8w3qom0egdt" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Front-end/">Front-end</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  
+</article>
+
+
+
+      
+        <article id="post-js技巧二" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/14/js技巧二/">js技巧一</a>
+    </h2>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/14/js技巧二/" class="article-date">
+  <time datetime="2019-03-14T07:23:19.000Z" itemprop="datePublished">2019-03-14</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JS/">JS</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="H5-跳转微信"><a href="#H5-跳转微信" class="headerlink" title="H5 跳转微信"></a>H5 跳转微信</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;weixin://&quot;&gt;打开微信&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="H5-设置全屏"><a href="#H5-设置全屏" class="headerlink" title="H5 设置全屏"></a>H5 设置全屏</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no&quot;&gt;</span><br><span class="line">&lt;!-- 启用 WebApp 全屏模式 --&gt;</span><br><span class="line">&lt;!-- uc强制竖屏 --&gt;</span><br><span class="line">&lt;!-- UC强制全屏 --&gt; </span><br><span class="line">&lt;!-- UC应用模式 --&gt; </span><br><span class="line">&lt;!-- QQ强制竖屏 --&gt;</span><br><span class="line">&lt;!-- QQ强制全屏 --&gt;</span><br><span class="line">&lt;!-- QQ应用模式 --&gt;</span><br><span class="line">&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt; </span><br><span class="line">&lt;meta name=&quot;screen-orientation&quot; content=&quot;portrait&quot;&gt;</span><br><span class="line">&lt;meta name=&quot;full-screen&quot; content=&quot;yes&quot;&gt;</span><br><span class="line">&lt;meta name=&quot;browsermode&quot; content=&quot;application&quot;&gt;</span><br><span class="line">&lt;meta name=&quot;x5-orientation&quot; content=&quot;portrait&quot;&gt;</span><br><span class="line">&lt;meta name=&quot;x5-fullscreen&quot; content=&quot;true&quot;&gt;</span><br><span class="line">&lt;meta name=&quot;x5-page-mode&quot; content=&quot;app&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="js-实现复制"><a href="#js-实现复制" class="headerlink" title="js 实现复制"></a>js 实现复制</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;textarea id=&quot;txt&quot;&gt;hello world&lt;/textarea&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    window.onload = function() &#123;</span><br><span class="line">        var Url2=document.getElementById(&quot;txt&quot;);</span><br><span class="line">        Url2.select(); // 选择对象</span><br><span class="line">        document.execCommand(&quot;Copy&quot;); // 执行浏览器复制命令</span><br><span class="line">        console.log(&quot;已复制好，可贴粘。&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/14/js技巧二/" data-id="cjxb88et4001yf8w3ubz2ks3m" class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Front-end/">Front-end</a></li></ul>
 
@@ -172,545 +731,9 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/14/css控制行末省略/" data-id="cju7rco3w000hfow31eujp8jd" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2019/03/14/css控制行末省略/" data-id="cjxb88erw000jf8w33icrh3z9" class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Front-end/">Front-end</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  
-</article>
-
-
-
-      
-        <article id="post-js小技巧" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/14/js小技巧/">js小技巧</a>
-    </h2>
-  
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/14/js小技巧/" class="article-date">
-  <time datetime="2019-03-14T07:23:19.000Z" itemprop="datePublished">2019-03-14</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/JS/">JS</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="时间格式化"><a href="#时间格式化" class="headerlink" title="时间格式化"></a>时间格式化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const formatTime = date =&gt; &#123;</span><br><span class="line">  const year = date.getFullYear()</span><br><span class="line">  const month = date.getMonth() + 1</span><br><span class="line">  const day = date.getDate()</span><br><span class="line">  const hour = date.getHours()</span><br><span class="line">  const minute = date.getMinutes()</span><br><span class="line">  const second = date.getSeconds()</span><br><span class="line">  return [year, month, day].map(formatNumber).join(&apos;/&apos;) + &apos; &apos; + [hour, minute, second].map(formatNumber).join(&apos;:&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2019/03/14/js小技巧/">阅读全文 &gt;&gt;</a>
-        
-      
-    </div>
-    
-    
-
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/14/js小技巧/" data-id="cju7rco4h000wfow3op1h2b9l" class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Front-end/">Front-end</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  
-</article>
-
-
-
-      
-        <article id="post-小程序适配iPhoneX" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/13/小程序适配iPhoneX/">小程序适配iPhone X</a>
-    </h2>
-  
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/13/小程序适配iPhoneX/" class="article-date">
-  <time datetime="2019-03-13T11:03:14.000Z" itemprop="datePublished">2019-03-13</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/小程序/">小程序</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <blockquote>
-<p>介于iPhone X安全区域，顶部导航栏+状态栏的高度44point、88px，顶部34point，68px;</p>
-</blockquote>
-<ul>
-<li>判断是否为iPhone X<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wx.getSystemInfo(&#123;</span><br><span class="line">    success: function (res) &#123;</span><br><span class="line">       if (res.model == &apos;iphonrx&apos;) &#123;</span><br><span class="line">            this.setData(&#123;</span><br><span class="line">                isIphoneX: true</span><br><span class="line">            &#125;)</span><br><span class="line">       &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-        
-          <a class="article-more-link" href="/2019/03/13/小程序适配iPhoneX/">阅读全文 &gt;&gt;</a>
-        
-      
-    </div>
-    
-    
-
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/13/小程序适配iPhoneX/" data-id="cju7rco57002cfow3dgwsp8h0" class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Front-end/">Front-end</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  
-</article>
-
-
-
-      
-        <article id="post-flask-与数据库" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/09/flask-与数据库/">Flask 与数据库</a>
-    </h2>
-  
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/09/flask-与数据库/" class="article-date">
-  <time datetime="2019-03-09T07:39:01.000Z" itemprop="datePublished">2019-03-09</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Flask/">Flask</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <ol>
-<li><p>在Linux上安装 MySQL-python，直接在终端输入<code>sudo pip install mysql-pyhton</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">如果出现错误：:</span><br><span class="line">raise EnvironmentError(&quot;%s not found&quot; % (mysql_config.path,))</span><br><span class="line">EnvironmentError: mysql_config not found</span><br><span class="line"></span><br><span class="line">原因可能是没有安装libmysqlclient-dev</span><br><span class="line">安装： sudo apt-get install libmysqlclient-dev</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在Linux上安装flask-SQLAlchemy, 在终端输入<code>sudo pip install flask-sqlalchemy</code></p>
-</li>
-</ol>
-        
-          <a class="article-more-link" href="/2019/03/09/flask-与数据库/">阅读全文 &gt;&gt;</a>
-        
-      
-    </div>
-    
-    
-
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/09/flask-与数据库/" data-id="cju7rco49000pfow3fbrn8gnl" class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  
-</article>
-
-
-
-      
-        <article id="post-ubantu上安装virtualenv" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/09/ubantu上安装virtualenv/">ubantu上安装virtualenv</a>
-    </h2>
-  
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/09/ubantu上安装virtualenv/" class="article-date">
-  <time datetime="2019-03-09T07:36:57.000Z" itemprop="datePublished">2019-03-09</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/环境配置/">环境配置</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h2 id="在ubantu上安装virtualenv"><a href="#在ubantu上安装virtualenv" class="headerlink" title="在ubantu上安装virtualenv"></a>在ubantu上安装virtualenv</h2><blockquote>
-<p>安装命令： <code>pip install virtualenv</code><br>查看是否安装成功： <code>virtualenv --version</code></p>
-</blockquote>
-        
-          <a class="article-more-link" href="/2019/03/09/ubantu上安装virtualenv/">阅读全文 &gt;&gt;</a>
-        
-      
-    </div>
-    
-    
-
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/09/ubantu上安装virtualenv/" data-id="cju7rco510020fow3dj7ffmpj" class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubantu/">ubantu</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  
-</article>
-
-
-
-      
-        <article id="post-ubantu上安装mysql" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/09/ubantu上安装mysql/">ubantu上安装mysql</a>
-    </h2>
-  
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/09/ubantu上安装mysql/" class="article-date">
-  <time datetime="2019-03-09T07:36:28.000Z" itemprop="datePublished">2019-03-09</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/环境配置/">环境配置</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <ul>
-<li><code>sudo apt-get install mysql-server</code></li>
-<li><code>apt-get isntall mysql-client</code></li>
-<li><code>sudo apt-get install libmysqlclient-dev</code></li>
-</ul>
-        
-          <a class="article-more-link" href="/2019/03/09/ubantu上安装mysql/">阅读全文 &gt;&gt;</a>
-        
-      
-    </div>
-    
-    
-
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/09/ubantu上安装mysql/" data-id="cju7rco540025fow3j2yh1mwd" class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubantu/">ubantu</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  
-</article>
-
-
-
-      
-        <article id="post-ubantu使用与建议" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/09/ubantu使用与建议/">ubantu使用与建议</a>
-    </h2>
-  
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/09/ubantu使用与建议/" class="article-date">
-  <time datetime="2019-03-09T07:35:49.000Z" itemprop="datePublished">2019-03-09</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/环境配置/">环境配置</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h2 id="ubantu-使用与建议"><a href="#ubantu-使用与建议" class="headerlink" title="ubantu 使用与建议"></a>ubantu 使用与建议</h2><ul>
-<li>使用环境： vmware 虚拟机</li>
-<li>若硬件条件有限建议使用 &lt;= 16版本的ubantu desktop版本</li>
-</ul>
-        
-          <a class="article-more-link" href="/2019/03/09/ubantu使用与建议/">阅读全文 &gt;&gt;</a>
-        
-      
-    </div>
-    
-    
-
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/09/ubantu使用与建议/" data-id="cju7rco4x001tfow3pvytis73" class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubantu/">ubantu</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  
-</article>
-
-
-
-      
-        <article id="post-node-js学习笔记三" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2017/01/06/node-js学习笔记三/">node.js学习笔记三</a>
-    </h2>
-  
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2017/01/06/node-js学习笔记三/" class="article-date">
-  <time datetime="2017-01-06T04:29:20.000Z" itemprop="datePublished">2017-01-06</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/NodeJS/">NodeJS</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h1 text-align="center">node.js 学习笔记三</h1>
-
-<h4 id="node-js的事件循环机制"><a href="#node-js的事件循环机制" class="headerlink" title="node.js的事件循环机制"></a>node.js的事件循环机制</h4><blockquote>
-<p>Node.js 在什么时候会进入事件循环呢？答案是 Node.js 程序由事件循环开始，到事件循环结束，所有的逻辑都是事件的回调函数，所以 Node.js 始终在事件循环中，程序入口就是事件循环第一个事件的回调函数。事件的回调函数在执行的过程中，可能会发出 I/O 请求或直接发射（emit）事件，执行完毕后再返回事件循环，事件循环会检查事件队列中有没有未处理的事件，直到程序结束</p>
-</blockquote>
-<blockquote>
-<p>事件循环 –&gt; 回调函数 –&gt; 磁盘I/O/网络通信/数据库查询 –&gt; 时间循环队列 –&gt; 事件循环 –&gt; 回调函数 </p>
-</blockquote>
-        
-          <a class="article-more-link" href="/2017/01/06/node-js学习笔记三/">阅读全文 &gt;&gt;</a>
-        
-      
-    </div>
-    
-    
-
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/06/node-js学习笔记三/" data-id="cju7rco4s001hfow3c9qqmkw1" class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Back-end/">Back-end</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  
-</article>
-
-
-
-      
-        <article id="post-node-js学习笔记二" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2017/01/04/node-js学习笔记二/">node.js学习笔记二</a>
-    </h2>
-  
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2017/01/04/node-js学习笔记二/" class="article-date">
-  <time datetime="2017-01-04T02:22:02.000Z" itemprop="datePublished">2017-01-04</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/NodeJS/">NodeJS</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h1 style="text-align: center;">Node.js同步与异步</h1>
-
-<blockquote>
-<p>Node.js最大的特性就是异步式I/O与事件紧密结合的编程模式。这种模式与传统的同步式IO线性的编程思路有很大的不同，因为控制流很大程度上要靠事件和回调函数来组织，一个逻辑要拆分为若干个单元格。</p>
-</blockquote>
-        
-          <a class="article-more-link" href="/2017/01/04/node-js学习笔记二/">阅读全文 &gt;&gt;</a>
-        
-      
-    </div>
-    
-    
-
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/04/node-js学习笔记二/" data-id="cju7rco4r001ffow3gdsmew4w" class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Back-end/">Back-end</a></li></ul>
 
     </footer>
 
@@ -734,7 +757,7 @@
   
     <nav class="page-nav">
       
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
     </nav>
   
 </section>
