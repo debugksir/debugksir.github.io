@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="Web,Python,Spider,Photography,Designer,Story,other">
+  
+  
+    <meta name="description" content="以此记录知识与生活">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    dart技巧 |
+    
+    人生如逆旅，我亦是行人</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-dart技巧" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      dart技巧
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/07/03/dart技巧/" class="article-date">
+  <time datetime="2019-07-03T07:33:19.000Z" itemprop="datePublished">2019-07-03</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Flutter/">Flutter</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="Map与JSON的转换"><a href="#Map与JSON的转换" class="headerlink" title="Map与JSON的转换"></a>Map与JSON的转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &apos;dart:convert&apos;;</span><br><span class="line">Map user = json.decode(jsonStr);</span><br><span class="line">String jsonStr = json.encode(user)</span><br></pre></td></tr></table></figure>
+<h3 id="两个List拼接"><a href="#两个List拼接" class="headerlink" title="两个List拼接"></a>两个List拼接</h3><p><code>List.from(lista)..addAll(listb);</code></p>
+<a id="more"></a>
+<h3 id="List的增删改查"><a href="#List的增删改查" class="headerlink" title="List的增删改查"></a>List的增删改查</h3><ul>
+<li>增加<code>list.add();</code></li>
+<li>删除指定元素<code>list.remove(item);</code></li>
+<li>删除指定下标元素<code>list.removeAt(index);</code></li>
+<li>修改<code>list[N] = newValue;</code></li>
+<li>查找<code>list.indexOf(target);</code></li>
+</ul>
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><ul>
+<li>int/double to String<br>  <code>target.toString();</code></li>
+<li>String to int<br>  <code>int.parse(target);</code></li>
+<li>String to double<br>  <code>double.parse(target);</code></li>
+</ul>
+<h3 id="按照列表中字典或者实例的某个元素排序"><a href="#按照列表中字典或者实例的某个元素排序" class="headerlink" title="按照列表中字典或者实例的某个元素排序"></a>按照列表中字典或者实例的某个元素排序</h3><ul>
+<li>类实例: <code>list.sort((a, b) =&gt; b.target.compareTo(a.target));</code></li>
+<li>字典: <code>list.sort((a, b) =&gt; b[target].compareTo(a[target]));</code></li>
+</ul>
+<h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import &apos;dart:async&apos;;</span><br><span class="line">//  启动定时器</span><br><span class="line">Timer _timer = Timer.periodic(const Duration(seconds: 1), callback);</span><br><span class="line">// 关闭定时器</span><br><span class="line">_timer.cancel();</span><br></pre></td></tr></table></figure>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li><p>保留两位小数点<br>  <code>3.14159.toStringAsFixed(2);</code></p>
+</li>
+<li><p><code>null</code> 判断符<br>  <code>isNull ?? &#39;&#39;;</code></p>
+</li>
+<li><p>判断<code>List</code>是否为空<br>  <code>List.isEmpty();</code></p>
+</li>
+<li><p>判断字符串是否包含字符<br>  <code>String.contains(Str);</code></p>
+</li>
+<li><p>判断<code>Map</code>是否包含某个key<br>  <code>Map.containsKey();</code></p>
+</li>
+<li><p>判断<code>Map</code>是否包含某个value<br>  <code>Map.containsValue();</code></p>
+</li>
+<li><p>判断<code>Map</code>是否为空<br>  <code>Map.isEmpty();</code></p>
+</li>
+<li><p>遍历<code>Map</code><br>  <code>Map.forEach((key, value) {...});</code></p>
+</li>
+<li><p><code>Map</code>删除操作</p>
+<ol>
+<li>删除某一项<code>remove(key);</code></li>
+<li>删除满足条件的项<code>removeWhere((key, value) =&gt; [bool]);</code></li>
+<li>删除全部<code>Map.clear();</code></li>
+</ol>
+</li>
+<li><p><code>Map</code>浅克隆<br>  <code>Map.from();</code></p>
+</li>
+<li><p><code>Map</code>深克隆</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &apos;dart:convert&apos;;</span><br><span class="line">// ...</span><br><span class="line">Map clonedUser = json.decode(json.encode(user));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Map</code>追加<br>  <code>Map.addAll(newMap);</code></p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/03/dart技巧/" data-id="cjzcdmry2000oo2wq8kgwdjlp" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flutter/">Flutter</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/07/20/flutter适配方案/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            flutter适配方案
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/06/22/python富文本转world/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">python富文本转word</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+  
+    
+  <div class="comment" id="comments"></div>
+  <script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: '8m7KpaQUQaSlUvwPK8sIqf5Y-gzGzoHsz',
+      appKey: 'KOp47h4dG5uGounP1YLfL6kf',
+      placeholder: '来呀，造作啊！',
+      avatar:'mm',
+      guest_info: GUEST,
+      pageSize:'10' || 10,
+    })
+  </script>
+
+  
+  
+  
+    <div class="reward-box">
+    <div class="reward-btn">赞 赏</div>
+    <img class="reward-img" src="/images/reward.png">
+    <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <div class="reward-tip">微信扫一扫</div>
+    <script type="text/javascript">
+        var flag = false;
+        $('.reward-btn').click(function() {
+            flag = !flag;
+            flag ? ($('.reward-img').fadeIn() & $('.reward-tip').fadeIn() & $(this).html('谢 谢')) : ($('.reward-img').fadeOut() & $('.reward-tip').fadeOut() & $(this).html('赞 赏'));
+        })
+    </script>
+</div>
+  
+  
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 人生如逆旅，我亦是行人</li>
+      <li>Write by <a href="https://github.com/debugksir" target="_blank">白夜飞鱼</a>
+      </li><li><i class="fe fe-bar-chart"></i> <span id="busuanzi_value_site_pv"></span></li>
+      <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="人生如逆旅，我亦是行人"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/tags">分类</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

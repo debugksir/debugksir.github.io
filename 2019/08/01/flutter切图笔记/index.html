@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="Web,Python,Spider,Photography,Designer,Story,other">
+  
+  
+    <meta name="description" content="以此记录知识与生活">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    flutter切图笔记 |
+    
+    人生如逆旅，我亦是行人</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-flutter切图笔记" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      flutter切图笔记
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/01/flutter切图笔记/" class="article-date">
+  <time datetime="2019-08-01T01:50:12.000Z" itemprop="datePublished">2019-08-01</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Flutter/">Flutter</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="输入框-TextField-去边框"><a href="#输入框-TextField-去边框" class="headerlink" title="输入框(TextField)去边框"></a>输入框(<code>TextField</code>)去边框</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TextField(</span><br><span class="line">    decoration: InputDecoration(   </span><br><span class="line">    border: InputBorder.none</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="超出的文字显示省略号"><a href="#超出的文字显示省略号" class="headerlink" title="超出的文字显示省略号"></a>超出的文字显示省略号</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Text(</span><br><span class="line">    item.title,</span><br><span class="line">    maxLines: 2,</span><br><span class="line">    overflow: TextOverflow.ellipsis,</span><br><span class="line">    style: ...</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="图片加占位符和圆角"><a href="#图片加占位符和圆角" class="headerlink" title="图片加占位符和圆角"></a>图片加占位符和圆角</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> Container(</span><br><span class="line">    padding: const EdgeInsets.all(20.0),</span><br><span class="line">    width: double.infinity,</span><br><span class="line">    height: 150,</span><br><span class="line">    child: ClipRRect(</span><br><span class="line">        borderRadius: BorderRadius.circular(6.0),</span><br><span class="line">        child: FadeInImage.assetNetwork(</span><br><span class="line">            placeholder: &quot;images/default.jpg&quot;,</span><br><span class="line">            image: &apos;https://via.placeholder.com/650x200&apos;,</span><br><span class="line">            fit: BoxFit.cover,</span><br><span class="line">         ),</span><br><span class="line">    ),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="设置Container全屏宽度"><a href="#设置Container全屏宽度" class="headerlink" title="设置Container全屏宽度"></a>设置<code>Container</code>全屏宽度</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Container(</span><br><span class="line">    width: MediaQuery.of(context).size.width,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="设置部分圆角"><a href="#设置部分圆角" class="headerlink" title="设置部分圆角"></a>设置部分圆角</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">borderRadius: const BorderRadius.only(topLeft: const Radius.circular(10.0), topRight: const Radius.circular(10.0))</span><br></pre></td></tr></table></figure>
+<h3 id="点击空白区域收回软键盘"><a href="#点击空白区域收回软键盘" class="headerlink" title="点击空白区域收回软键盘"></a>点击空白区域收回软键盘</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GestureDetector(  </span><br><span class="line">    behavior: HitTestBehavior.translucent,  </span><br><span class="line">    onTap: () &#123;  </span><br><span class="line">        // 触摸收起键盘  </span><br><span class="line">        FocusScope.of(context).requestFocus(FocusNode());  </span><br><span class="line">    &#125;,  </span><br><span class="line">    child: *******  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="禁止-ScrollView-滑动"><a href="#禁止-ScrollView-滑动" class="headerlink" title="禁止 ScrollView 滑动"></a>禁止 ScrollView 滑动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">physics: const NeverScrollableScrollPhysics()</span><br></pre></td></tr></table></figure>
+<h3 id="showDialog-或-showBottomSheet-更改状态"><a href="#showDialog-或-showBottomSheet-更改状态" class="headerlink" title="showDialog() 或 showBottomSheet() 更改状态"></a>showDialog() 或 showBottomSheet() 更改状态</h3><p>因这两个方法是生成了新的路由了，因此没办法用当前页面的setState来做状态更新。<br>这里使用 StatefulBuilder 组件更新 dialog 内的状态<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">StatefulBuilder(</span><br><span class="line">    builder: (context, state) &#123;</span><br><span class="line">    <span class="comment">//当前使用新的方法 state 来更新状态</span></span><br><span class="line">    state(()&#123;&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="路由重定向"><a href="#路由重定向" class="headerlink" title="路由重定向"></a>路由重定向</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Navigator.of(context).pushAndRemoveUntil(</span><br><span class="line">    new MaterialPageRoute(builder: (context) =&gt; new MyApp() ),</span><br><span class="line">     (route) =&gt; route == null</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="顶部固定剩余部分滑动"><a href="#顶部固定剩余部分滑动" class="headerlink" title="顶部固定剩余部分滑动"></a>顶部固定剩余部分滑动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">LayoutBuilder(</span><br><span class="line">    builder: (context, constrains) &#123;</span><br><span class="line">        return Column(</span><br><span class="line">            children: &lt;Widget&gt;[</span><br><span class="line">                sizeBox(</span><br><span class="line">                    height: 50,</span><br><span class="line">                    child: ...</span><br><span class="line">                ),</span><br><span class="line">                SizedBox(</span><br><span class="line">                    height: constrains.maxHeight-50,</span><br><span class="line">                    child: ...</span><br><span class="line">                )</span><br><span class="line">            ]</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="在widget列表中异步循环渲染组件"><a href="#在widget列表中异步循环渲染组件" class="headerlink" title="在widget列表中异步循环渲染组件"></a>在<code>widget</code>列表中异步循环渲染组件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">List renderData = [...];</span><br><span class="line">Iterable&lt;Widget&gt; get widgetList sync* &#123;</span><br><span class="line">    for (int i = 0; i &lt; renderData.length; i++) &#123;</span><br><span class="line">        yield Container(...);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 在`widget`列表中使用(Row, Column, ListView...)</span><br><span class="line">Row(</span><br><span class="line">    ...</span><br><span class="line">    children: widgetList.toList()</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="设置为宽度为最大宽度"><a href="#设置为宽度为最大宽度" class="headerlink" title="设置为宽度为最大宽度"></a>设置为宽度为最大宽度</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MediaQuery.of(context).size.width</span><br></pre></td></tr></table></figure>
+<h3 id="设置渐变"><a href="#设置渐变" class="headerlink" title="设置渐变"></a>设置渐变</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">BoxDecoration(</span><br><span class="line">    ...</span><br><span class="line">    gradient: LinearGradient(</span><br><span class="line">        begin: Alignment(0, 0),</span><br><span class="line">        end: Alignment(1, 1),</span><br><span class="line">        colors: [Color(0xff1eccfe), Color(0xff0191fa)]</span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="统一Android和IOS头部"><a href="#统一Android和IOS头部" class="headerlink" title="统一Android和IOS头部"></a>统一Android和IOS头部</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Scaffold(</span><br><span class="line">    appBar: AppBar(</span><br><span class="line">        title: Text(&apos;标题&apos;, style: TextStyle(color: Color(0xff333333), fontSize: 22)),</span><br><span class="line">        leading: new IconButton(</span><br><span class="line">          onPressed: () &#123;</span><br><span class="line">            Navigator.pop(context);</span><br><span class="line">          &#125;,</span><br><span class="line">          icon: Icon(Icons.chevron_left, color: Color(0xff333333), size: 22),</span><br><span class="line">        ),</span><br><span class="line">        elevation: 0,</span><br><span class="line">    ),</span><br><span class="line">    body: ...</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="自定义tab"><a href="#自定义tab" class="headerlink" title="自定义tab"></a>自定义<code>tab</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">class Orders extends StatefulWidget &#123;</span><br><span class="line">  final dynamic option;</span><br><span class="line">  Orders(this.option);</span><br><span class="line">  OrdersState createState () =&gt; OrdersState();</span><br><span class="line">&#125;</span><br><span class="line">class OrdersState extends State&lt;Orders&gt; &#123;</span><br><span class="line">  final List&lt;Tab&gt; myTabs = &lt;Tab&gt;[</span><br><span class="line">    new Tab(text: &apos;全部&apos;),</span><br><span class="line">    new Tab(text: &apos;已完成&apos;),</span><br><span class="line">    new Tab(text: &apos;未完成&apos;),</span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  TabController _controller;</span><br><span class="line">  </span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return DefaultTabController(</span><br><span class="line">      length: myTabs.length,</span><br><span class="line">      child: Scaffold(</span><br><span class="line">        appBar: AppBar(</span><br><span class="line">          title: Text(&apos;订单管理&apos;, style: TextStyle(color: kLingyiText500, fontSize: ScreenUtil.getInstance().setSp(32))),</span><br><span class="line">          leading: new IconButton(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line">              Navigator.pop(context);</span><br><span class="line">            &#125;,</span><br><span class="line">            icon: Icon(Icons.chevron_left, color: kLingyiText500, size: ScreenUtil.getInstance().setSize(42)),</span><br><span class="line">          ),</span><br><span class="line">          bottom: TabBar(</span><br><span class="line">            tabs: myTabs,</span><br><span class="line">            controller: _controller,</span><br><span class="line">            indicatorColor: Colors.red,</span><br><span class="line">            indicatorSize: TabBarIndicatorSize.tab,</span><br><span class="line">            isScrollable: false,</span><br><span class="line">            labelColor: Colors.red,</span><br><span class="line">            unselectedLabelColor: Colors.black,</span><br><span class="line">            indicatorWeight: 5.0,</span><br><span class="line">            labelStyle: TextStyle(height: 1),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">        body:TabBarView(</span><br><span class="line">          children: myTabs.map((Tab tab) &#123;</span><br><span class="line">            // var tabIndex = myTabs.indexOf(tab);</span><br><span class="line">            // return OrderBody(tabIndex);</span><br><span class="line">            ...</span><br><span class="line">          &#125;).toList(),</span><br><span class="line">        )</span><br><span class="line">      )</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="webView的使用"><a href="#webView的使用" class="headerlink" title="webView的使用"></a>webView的使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import &apos;package:flutter/material.dart&apos;;</span><br><span class="line">import &apos;package:webview_flutter/webview_flutter.dart&apos;;</span><br><span class="line">class Webview extends StatelessWidget &#123;</span><br><span class="line">  final dynamic option;</span><br><span class="line">  Webview(this.option);</span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    String url = option.query[&apos;url&apos;];</span><br><span class="line">    String title = option.query[&apos;title&apos;];</span><br><span class="line">    return Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(title),</span><br><span class="line">        leading: new IconButton(</span><br><span class="line">          onPressed: () &#123;</span><br><span class="line">            Navigator.pop(context);</span><br><span class="line">          &#125;,</span><br><span class="line">          icon: Icon(Icons.chevron_left),</span><br><span class="line">        ),</span><br><span class="line">        elevation: 0,</span><br><span class="line">      ),</span><br><span class="line">      </span><br><span class="line">      body: WebView(</span><br><span class="line">        initialUrl: url,</span><br><span class="line">        javascriptMode: JavascriptMode.unrestricted,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/01/flutter切图笔记/" data-id="cjzcdmrya0019o2wq3qmmh6z1" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flutter/">Flutter</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2019/07/20/flutter适配方案/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">flutter适配方案</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+  
+    
+  <div class="comment" id="comments"></div>
+  <script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: '8m7KpaQUQaSlUvwPK8sIqf5Y-gzGzoHsz',
+      appKey: 'KOp47h4dG5uGounP1YLfL6kf',
+      placeholder: '来呀，造作啊！',
+      avatar:'mm',
+      guest_info: GUEST,
+      pageSize:'10' || 10,
+    })
+  </script>
+
+  
+  
+  
+    <div class="reward-box">
+    <div class="reward-btn">赞 赏</div>
+    <img class="reward-img" src="/images/reward.png">
+    <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <div class="reward-tip">微信扫一扫</div>
+    <script type="text/javascript">
+        var flag = false;
+        $('.reward-btn').click(function() {
+            flag = !flag;
+            flag ? ($('.reward-img').fadeIn() & $('.reward-tip').fadeIn() & $(this).html('谢 谢')) : ($('.reward-img').fadeOut() & $('.reward-tip').fadeOut() & $(this).html('赞 赏'));
+        })
+    </script>
+</div>
+  
+  
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 人生如逆旅，我亦是行人</li>
+      <li>Write by <a href="https://github.com/debugksir" target="_blank">白夜飞鱼</a>
+      </li><li><i class="fe fe-bar-chart"></i> <span id="busuanzi_value_site_pv"></span></li>
+      <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="人生如逆旅，我亦是行人"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/tags">分类</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>
